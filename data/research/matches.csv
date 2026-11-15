@@ -1,0 +1,4 @@
+id,demand_id,supply_id,match_score,why_match,why_not_match,confidence,recommendation,next_step,created_at
+MATCH-R1-001,DEM-R1-004,SUP-R1-001,62,产品形态互补（Lintasarta已有GPUaaS/登甲可提供卡时+Token+私有化）；广州-雅加达地理近、成本敏感；Lintasarta现有NVIDIA栈理论上存在第二供应商/降本空间,印尼本地节点缺失与Lintasarta数据驻留印尼冲突；NVIDIA生态锁定与迁移成本；登甲卡型/卡量/海外节点均为空白；印尼监管+美方出口管制双重风险；决策链可能在Indosat集团层,中高,ADVANCE（推荐推进，仅内部核验）,补证Lintasarta扩容信息+核验登甲卡型/卡量/节点+律师初筛（不对外接触）,2026-11-16
+MATCH-R1-002,DEM-R1-003,SUP-R1-002,36,叙事契合（国家AI factory+GPUaaS与绿能智算定位相近）；非洲对资本开支敏感、中国设备成本有理论优势；天顿有上市公司背景,天顿无海外节点与跨境数据方案而埃及要求数据驻留；Cassava为非洲首个NVIDIA云合作伙伴、技术栈绑定NVIDIA；天顿证据不足（仅1条转载来源）；项目涉Vodafone/NVIDIA及西方融资的供应商限制；交付运维距离远,低,NEED_MORE_INFO（待补充信息）,先补天顿证据（01396.HK公告/年报、量子湃文档）+核验Cassava采购主体与供应商限制；两项不足则关闭,2026-11-16
+MATCH-R1-003,DEM-R1-005,SUP-R1-003,31,推理侧技术互补（印度多语言低成本推理×硅基流动多芯片推理能力）；平台化交付快；国产芯片适配经验具稀缺性,训练侧完全无法承接（万亿参数需万卡级自有集群）；印度主权AI数据驻留与词元跨境冲突；Sarvam获NVIDIA投资、供应绑定；印度对中资审查趋严；硅基流动跨境合规定性未明,低,REJECT（短期不推荐）,不投入商务资源；仅政策跟踪，作为内部反面案例,2026-11-16
