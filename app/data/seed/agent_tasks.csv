@@ -1,0 +1,12 @@
+id,agent_name,task_type,title,input_ref,output_path,priority,status,requires_approval,started_at,finished_at,result_summary,error,created_at,updated_at
+TASK-20261116-001,Research Director,data_audit,研究线数据体检与研究计划维护,,,P1,QUEUED,0,,,,,2026-11-16T00:00:00+08:00,2026-11-16T00:00:00+08:00
+TASK-20261116-002,Global Demand Intelligence,report_render,海外需求研究简报（公开信号版）,,,P1,QUEUED,0,,,,,2026-11-16T00:00:00+08:00,2026-11-16T00:00:00+08:00
+TASK-20261116-003,China Supply Intelligence,evidence_check,18 家供给线索证据链缺口核对,,,P1,QUEUED,0,,,,,2026-11-16T00:00:00+08:00,2026-11-16T00:00:00+08:00
+TASK-20261116-004,Supplier Verification,evidence_check,三家优先供应商核验清单准备,,,P1,QUEUED,0,,,,,2026-11-16T00:00:00+08:00,2026-11-16T00:00:00+08:00
+TASK-20261116-005,Compute Analyst,report_render,GPU 规格归一化对照表（公开规格）,,,P2,QUEUED,0,,,,,2026-11-16T00:00:00+08:00,2026-11-16T00:00:00+08:00
+TASK-20261116-006,Matching Engine,match_compute,首条公开需求线索的确定性匹配试算,DEM-20261102-001,,P1,QUEUED,0,,,,,2026-11-16T00:00:00+08:00,2026-11-16T00:00:00+08:00
+TASK-20261116-007,Procurement Analyst,report_render,采购分析报告模板与评分口径整理,,,P2,QUEUED,0,,,,,2026-11-16T00:00:00+08:00,2026-11-16T00:00:00+08:00
+TASK-20261116-008,Cross-border Research,evidence_check,跨境合规公开信息初筛清单,,,P1,QUEUED,0,,,,,2026-11-16T00:00:00+08:00,2026-11-16T00:00:00+08:00
+TASK-20261116-009,Commercial Operations,data_audit,商机阶段与审批留痕体检,,,P2,QUEUED,0,,,,,2026-11-16T00:00:00+08:00,2026-11-16T00:00:00+08:00
+TASK-20261116-010,Data Manager,schema_validate,数据库 schema 与 SPEC 一致性校验,,,P1,QUEUED,0,,,,,2026-11-16T00:00:00+08:00,2026-11-16T00:00:00+08:00
+TASK-20261116-011,QA,schema_validate,Agent/Skill 注册与数据一致性独立复核,,,P2,QUEUED,0,,,,,2026-11-16T00:00:00+08:00,2026-11-16T00:00:00+08:00

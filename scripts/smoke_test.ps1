@@ -59,8 +59,13 @@ try {
         if ($dem.items.Count -gt 0 -and $sup.items.Count -gt 0) {
             $body = @{ demand_id = $dem.items[0].id; supply_ids = @($sup.items[0].id); persist = $false } | ConvertTo-Json
             $m = Invoke-RestMethod -Uri "$base/api/match/run" -Method Post -Body $body -ContentType 'application/json' -TimeoutSec 15
-            $score = $m.results[0].total_score
-            Write-Host "[ OK ] /api/match/run 总分=$score 建议=$($m.results[0].recommendation)" -ForegroundColor Green
+            $score = $m.results[0].score
+            $rec = $m.results[0].recommendation
+            if ($null -eq $score -or -not $rec) {
+                Write-Host "[FAIL] /api/match/run 返回缺少 score/recommendation 字段" -ForegroundColor Red; $fail++
+            } else {
+                Write-Host "[ OK ] /api/match/run 总分=$score 建议=$rec" -ForegroundColor Green
+            }
         } else { Write-Host '[WARN] 缺需求或供给数据，跳过匹配实测' -ForegroundColor Yellow }
     } catch {
         Write-Host "[FAIL] /api/match/run $($_.Exception.Message)" -ForegroundColor Red; $fail++

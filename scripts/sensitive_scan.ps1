@@ -60,6 +60,8 @@ foreach ($f in $files) {
                 foreach ($d in $placeholderDomains) { if ($matched.ToLower().Contains($d)) { $isPlaceholder = $true } }
                 if ($p.name -eq '中国手机号') {
                     if ($line -match '占位|placeholder|示例|XXXX|xxxx|\*\*\*\*') { $isPlaceholder = $true }
+                    # 公开文档通用的测试/示例号码，不构成真实联系方式
+                    if ($matched -in @('13800138000', '13800000000', '13900000000')) { $isPlaceholder = $true }
                 }
                 if (-not $isPlaceholder) { $medHits += "${f}:$ln [$($p.name)] $($line.Trim().Substring(0,[Math]::Min(80,$line.Trim().Length)))" }
             }

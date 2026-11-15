@@ -1,0 +1,8 @@
+id,approval_type,subject,requested_by,requested_at,required_role,payload_json,status,decided_by,decided_at,decision_note
+APR-20261116-001,OUTBOUND_MESSAGING,对外话术批准：公司介绍与项目说明修订稿（未批准前一律不得外发）,AI 项目总负责人,2026-11-16T00:00:00+08:00,CEO,{"note":"对外材料须标注主体设立中与信息待核验"},PENDING,,,
+APR-20261116-002,GITHUB_VISIBILITY,仓库可见性变更批准：是否将公开仓库改为 Private,AI 项目总负责人,2026-11-16T00:00:00+08:00,CEO,{"note":"公开仓库不得含真实业务数据与联系人"},PENDING,,,
+APR-20261116-003,SUPPLIER_FIRST_CONTACT,供应商首访授权：优先三家供给线索的正式接触与访谈,AI 项目总负责人,2026-11-16T00:00:00+08:00,CEO,{"note":"仅授权首访不授权报价与承诺"},PENDING,,,
+APR-20261116-004,CUSTOMER_FIRST_CONTACT,海外客户首访授权：公开需求线索的接触边界与话术,AI 项目总负责人,2026-11-16T00:00:00+08:00,CEO,{"note":"未升级线索不得称为合格客户"},PENDING,,,
+APR-20261116-005,INTRO_AGREEMENT_TEMPLATE,介绍协议模板批准：双向披露与费用结构逐案商议,AI 项目总负责人,2026-11-16T00:00:00+08:00,CEO,{"note":"禁止写死费率与独家条款"},PENDING,,,
+APR-20261116-006,FEE_FRAMEWORK,收费框架批准：首单收费模式与上限区间（逐案审批）,AI 项目总负责人,2026-11-16T00:00:00+08:00,CEO,{"note":"收费以书面协议为准并披露利益冲突"},PENDING,,,
+APR-20261116-007,RED_LINE_CONFIRMATION,红线业务确认：不接仿真造假与规避出口管制需求,AI 项目总负责人,2026-11-16T00:00:00+08:00,CEO,{"note":"红线清单须 CEO 确认后写入知识库"},PENDING,,,

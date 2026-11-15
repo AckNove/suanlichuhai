@@ -1,0 +1,11 @@
+id,gpu_model,vendor,form_factor,memory_gb,memory_type,memory_bandwidth_gbps,fp16_tflops,tf32_tflops,fp8_tflops,interconnect,typical_cluster,power_kw_per_node,notes,source
+SPEC-0001,H100 SXM,NVIDIA,SXM5,80,HBM3,3350,989.4,494.7,1978.9,NVLink 4（900 GB/s）,8×H100 SXM/节点,10.2,公开规格参考，非报价；数值为公开资料近似值,https://www.nvidia.com/en-us/data-center/h100/
+SPEC-0002,H100 PCIe,NVIDIA,PCIe Gen5,80,HBM2e,2039,756,378,1513,PCIe Gen5 / NVLink Bridge,8×H100 PCIe/节点,5.5,公开规格参考，非报价；数值为公开资料近似值,https://www.nvidia.com/en-us/data-center/h100/
+SPEC-0003,H200 SXM,NVIDIA,SXM5,141,HBM3e,4800,989.4,494.7,1978.9,NVLink 4（900 GB/s）,8×H200 SXM/节点,10.2,公开规格参考，非报价；数值为公开资料近似值,https://www.nvidia.com/en-us/data-center/h200/
+SPEC-0004,A100 80GB SXM,NVIDIA,SXM4,80,HBM2e,2039,312,156,,NVLink 3（600 GB/s）,8×A100 SXM/节点,6.5,公开规格参考，非报价；数值为公开资料近似值,https://www.nvidia.com/en-us/data-center/a100/
+SPEC-0005,A100 80GB PCIe,NVIDIA,PCIe Gen4,80,HBM2e,1935,312,156,,PCIe Gen4 / NVLink Bridge,8×A100 PCIe/节点,6.5,公开规格参考，非报价；数值为公开资料近似值,https://www.nvidia.com/en-us/data-center/a100/
+SPEC-0006,A800 80GB,NVIDIA,SXM4,80,HBM2e,2039,312,156,,NVLink 定制版（互联带宽受限）,8×A800/节点,6.5,中国特供型号，互联带宽受限；公开规格参考，非报价,https://www.nvidia.com/en-us/data-center/a100/
+SPEC-0007,H800 SXM,NVIDIA,SXM5,80,HBM3,3350,989.4,494.7,1978.9,NVLink 定制版（互联带宽受限）,8×H800/节点,10.2,中国特供型号，互联带宽受限；公开规格参考，非报价,https://www.nvidia.com/en-us/data-center/h100/
+SPEC-0008,昇腾 910B,Huawei,OAM/PCIe,64,HBM2e,1600,320,,,HCCS,8×910B/节点,,公开规格参考，非报价；部分数值为公开资料近似值,https://www.hiascend.com/
+SPEC-0009,寒武纪 思元 590,Cambricon,PCIe Gen5,64,HBM2e,1024,256,,,MLU-Link,,,公开规格参考，非报价；部分数值为公开资料近似值,https://www.cambricon.com/
+SPEC-0010,RTX 4090,NVIDIA,PCIe Gen4,24,GDDR6X,1008,82.6,,,PCIe / 无 NVLink,消费级，不建议作为数据中心主卡,0.45,公开规格参考，非报价；消费级显卡，仅作对照,https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4090/
