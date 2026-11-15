@@ -15,7 +15,7 @@
 | `04_DATABASE_AND_BACKEND` | `872ea77b05261f7adcf32836783866b007d6b947` | ✅ 一致 | 后端 9 模块、18 表 schema、历史种子导入、可解释匹配引擎、CSV 导入导出、备份恢复、89 个测试 |
 | `05_FRONTEND_AND_AGENTS` | `c49121bbc7e0e052dcf77bd0ac35f7c4074eb860` | ✅ 一致 | 18 模块前端工作台、11 Agent 注册表 + 确定性运行器、10 个项目 Skills、研究导入工具脚本、备份/能力口径校正 |
 | `06_FINAL_ACCEPTANCE`（研究） | `260d2a08e38d271d857baa56250c385fc66deab1` | ✅ 一致 | 第一轮真实公开研究（需求 5 / 供给 3 / 匹配 3 / 证据 40 + 4 个 CSV）、文档终校（战略/商务/条款/经营修订） |
-| `06_FINAL_ACCEPTANCE`（验收） | 见本文件下次更新（或 `git log` 最后一个 docs 提交） | 待推送后回填 | MVP 验收报告、最终交接、CEO 下一步、本同步记录 |
+| `06_FINAL_ACCEPTANCE`（验收） | `15f0797ac8b1097c703ff6e5392225176eb3c8f6` | ✅ 一致 | MVP 验收报告、最终交接、CEO 下一步、本同步记录（含 00–05 全部 SHA） |
 
 > 说明：CEO 要求的 7 个阶段均已覆盖；其中 02 与 03 因同一批次交付合并为一次提交推送，已在表中注明。研究阶段按任务书时间线并入 06 收尾。
 
@@ -56,3 +56,12 @@ git log --oneline -10
 git ls-remote origin
 # 期望：refs/heads/ai-build-20261116 指向本地 HEAD
 ```
+
+## 6. 最终核对快照
+
+- 远程默认分支 `main`：`d0a9a30d61285471a0cfd0264fdc4b1015256f86`（未改动）。
+- 历史分支 `cursor/handover-20261113-5b36`：`ca825a581135f9fadb3786fd240581be398587cd`（未删除、未合并）。
+- 开发分支 `origin/ai-build-20261116`：含 checkpoint-00 ~ 06 全部提交；每次推送后 `git ls-remote` 核对远程 SHA 与本地 HEAD 一致（无 force push）。
+- 本文件最后由「docs 同步提交」更新（SHA 见 `git log -1 --format=%H`）；该提交仅更新本记录，包含最终远程 HEAD。
+- 仓库仍为 **Public**（匿名 `ls-remote` 可访问已验证）；**待 CEO 授权后改为 Private**，未经授权未自行修改。改权限后建议 `git remote set-url` 不变，仅访问控制变化。
+- 敏感数据检查：最近一次 `sensitive_scan.ps1` 覆盖全部受控文件，高危 0 / 未确认中危 0；历史交接二进制 7 项按「不得删除历史文件」要求豁免并列出路径。
