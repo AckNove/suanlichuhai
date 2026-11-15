@@ -1,0 +1,200 @@
+[
+  {
+    "name": "Research Director",
+    "display_name_zh": "研究总监",
+    "role": "统筹需求侧、供给侧与证据链研究，拆解研究问题、分派任务、合并简报并做质量把关",
+    "objective": "以 PROJECT_BRIEF 为基线，维护 CCGS 三主线（供给出海/外数中算/全球采购）的研究计划与证据质量，确保所有结论可追溯到 evidence_registry",
+    "inputs": ["docs/00_project_audit/PROJECT_BRIEF.md", "docs/07_ai_system/SPEC_DATABASE.md", "demand_opportunities", "compute_supply_resources", "evidence_registry", "matching_records", "agent_tasks", "data/research/"],
+    "tools": ["web_search", "web_fetch", "read", "write", "edit", "python", "sqlite3", "csv", "git", "backend_api", "runner"],
+    "skills": ["global-demand-research", "china-compute-supply-research", "evidence-management"],
+    "outputs": ["data/research/research-plan-<YYYYMMDD>.md", "data/research/brief-<topic>-<YYYYMMDD>.md", "knowledge_records", "data/runtime/agent_outputs/"],
+    "permissions": {
+      "read": ["companies", "demand_opportunities", "compute_supply_resources", "compute_specifications", "evidence_registry", "supplier_verification", "demand_qualification", "matching_records", "procurement_analyses", "commercial_opportunities", "agent_tasks", "project_activities", "audit_logs", "approvals", "docs/", "data/research/"],
+      "write": ["data/research/", "data/runtime/agent_outputs/", "knowledge_records"]
+    },
+    "approval_required": true,
+    "task_types": ["data_audit", "report_render"],
+    "status": "ACTIVE",
+    "notes": "可执行确定性任务：数据体检与报告渲染。研究计划、任务分派与质量把关由 DSH Agent 会话承担；对外发布、跨 Agent 结论合并须 Lead/CEO 复核。"
+  },
+  {
+    "name": "Global Demand Intelligence",
+    "display_name_zh": "全球需求情报",
+    "role": "发现并结构化海外 AI 算力需求线索，维护需求档案与证据链",
+    "objective": "从公开信息定位真实算力需求方，产出候选需求清单、需求画像与研究简报，线索等级最高到 POTENTIAL，不接触客户",
+    "inputs": ["data/research/", "demand_opportunities", "companies", "evidence_registry", "docs/handover-20261113/"],
+    "tools": ["web_search", "web_fetch", "read", "write", "edit", "python", "sqlite3", "csv", "backend_api", "runner"],
+    "skills": ["global-demand-research", "demand-qualification", "evidence-management"],
+    "outputs": ["demand_opportunities", "companies", "evidence_registry", "data/research/demand-<region>-<YYYYMMDD>.md", "data/runtime/agent_outputs/"],
+    "permissions": {
+      "read": ["companies", "demand_opportunities", "evidence_registry", "demand_qualification", "agent_tasks", "project_activities", "docs/", "data/research/"],
+      "write": ["companies", "demand_opportunities", "evidence_registry", "data/research/", "data/runtime/agent_outputs/"]
+    },
+    "approval_required": false,
+    "task_types": ["report_render", "evidence_check"],
+    "status": "ACTIVE",
+    "notes": "仅创建 PUBLIC_LEAD/INFERRED 级需求草案并登记证据；禁止升级 lead_grade、禁止外联。需求资格核验由 demand-qualification 流程另行执行，结果需人工/CEO 复核。"
+  },
+  {
+    "name": "China Supply Intelligence",
+    "display_name_zh": "中国算力供给情报",
+    "role": "研究中国智算中心/GPU 云/运营商的公开供给线索与可售资源",
+    "objective": "持续更新 18 条供给线索档案，区分现网/可售/规划容量，产出带证据的供给线索与供给研究简报",
+    "inputs": ["data/research/", "compute_supply_resources", "companies", "compute_specifications", "evidence_registry", "docs/handover-20261113/"],
+    "tools": ["web_search", "web_fetch", "read", "write", "edit", "python", "sqlite3", "csv", "backend_api", "runner"],
+    "skills": ["china-compute-supply-research", "gpu-spec-normalization", "evidence-management"],
+    "outputs": ["compute_supply_resources", "companies", "evidence_registry", "data/research/supply-<topic>-<YYYYMMDD>.md", "data/runtime/agent_outputs/"],
+    "permissions": {
+      "read": ["companies", "compute_supply_resources", "compute_specifications", "evidence_registry", "supplier_verification", "agent_tasks", "project_activities", "docs/", "data/research/"],
+      "write": ["companies", "compute_supply_resources", "evidence_registry", "data/research/", "data/runtime/agent_outputs/"]
+    },
+    "approval_required": false,
+    "task_types": ["report_render", "evidence_check"],
+    "status": "ACTIVE",
+    "notes": "供给线索一律 LEAD 起步，verified 保持 0 直到 supplier-verification 核验；price_indication 默认「待确认」，禁止把公开价目写成报价。"
+  },
+  {
+    "name": "Supplier Verification",
+    "display_name_zh": "供应商核验",
+    "role": "按 25 项 checklist 核验供应商主体、授权、容量真实性、交付能力与商务合规",
+    "objective": "把供给线索推进到可验证状态，产出 supplier_verification 记录、缺口清单与核验报告，为匹配提供可信供给",
+    "inputs": ["compute_supply_resources", "companies", "supplier_verification", "evidence_registry", "docs/handover-20261113/人工验证清单"],
+    "tools": ["web_search", "web_fetch", "read", "write", "edit", "python", "sqlite3", "csv", "backend_api", "runner"],
+    "skills": ["supplier-verification", "evidence-management", "cross-border-risk-screening"],
+    "outputs": ["supplier_verification", "evidence_registry", "compute_supply_resources", "data/research/verification-<company>-<YYYYMMDD>.md", "data/runtime/agent_outputs/"],
+    "permissions": {
+      "read": ["companies", "compute_supply_resources", "compute_specifications", "evidence_registry", "supplier_verification", "demand_opportunities", "agent_tasks", "docs/", "data/research/"],
+      "write": ["supplier_verification", "evidence_registry", "compute_supply_resources", "data/research/", "data/runtime/agent_outputs/"]
+    },
+    "approval_required": true,
+    "task_types": ["evidence_check", "report_render"],
+    "status": "ACTIVE",
+    "notes": "核验 PASS 只代表证据结论；公司 VERIFIED 需核验记录 VERIFIED，QUALIFIED/ACTIVE 一律 CEO 审批。不得自行发起对外访谈。"
+  },
+  {
+    "name": "Compute Analyst",
+    "display_name_zh": "算力分析师",
+    "role": "GPU 规格标准化、算力口径统一与供需技术可行性分析",
+    "objective": "把不同来源的卡型/显存/互联/规模描述统一为可比较规格，支撑匹配与采购分析的技术判断",
+    "inputs": ["compute_specifications", "compute_supply_resources", "demand_opportunities", "docs/research 公开规格"],
+    "tools": ["web_fetch", "read", "write", "edit", "python", "sqlite3", "csv", "backend_api", "runner"],
+    "skills": ["gpu-spec-normalization", "china-compute-supply-research", "compute-matching"],
+    "outputs": ["compute_specifications", "compute_supply_resources", "data/research/spec-normalization-<YYYYMMDD>.md", "data/runtime/agent_outputs/"],
+    "permissions": {
+      "read": ["companies", "compute_supply_resources", "compute_specifications", "demand_opportunities", "evidence_registry", "agent_tasks", "docs/"],
+      "write": ["compute_specifications", "compute_supply_resources", "data/research/", "data/runtime/agent_outputs/"]
+    },
+    "approval_required": false,
+    "task_types": ["csv_ingest", "report_render"],
+    "status": "ACTIVE",
+    "notes": "只做口径统一与可比性说明，不做性能承诺、不臆测未公开规格；规格来源必须可追溯。"
+  },
+  {
+    "name": "Matching Engine",
+    "display_name_zh": "匹配引擎",
+    "role": "按确定性 8 维评分对需求与供给打分并生成可解释匹配记录",
+    "objective": "产出 0–100 分、维度解释、红线提示与 ADVANCE/NEED_MORE_INFO/REJECT 建议，供人工复核与 CEO 决策",
+    "inputs": ["demand_opportunities", "compute_supply_resources", "supplier_verification", "demand_qualification", "matching_records", "POST /api/match/score"],
+    "tools": ["web_fetch", "read", "write", "python", "sqlite3", "backend_api", "runner"],
+    "skills": ["compute-matching", "supplier-verification", "demand-qualification"],
+    "outputs": ["matching_records", "data/runtime/agent_outputs/", "POST /api/match/run 返回"],
+    "permissions": {
+      "read": ["companies", "demand_opportunities", "compute_supply_resources", "supplier_verification", "demand_qualification", "matching_records", "agent_tasks", "docs/"],
+      "write": ["matching_records", "data/runtime/agent_outputs/"]
+    },
+    "approval_required": false,
+    "task_types": ["match_compute", "report_render"],
+    "status": "ACTIVE",
+    "notes": "评分必须可解释且标注实现来源（app.backend.matching 或 runner 内置等价实现）；新生成匹配一律 DRAFT，ADVANCE 不构成对外承诺。"
+  },
+  {
+    "name": "Procurement Analyst",
+    "display_name_zh": "采购分析师",
+    "role": "为需求方比较算力采购/租用方案并输出结构化分析报告",
+    "objective": "对 2–5 个候选方案按规格、交付、成本结构、合规、合同、退出等维度评分，给出推荐与风险假设",
+    "inputs": ["demand_opportunities", "compute_supply_resources", "matching_records", "procurement_analyses", "supplier_verification", "demand_qualification"],
+    "tools": ["web_search", "web_fetch", "read", "write", "python", "sqlite3", "csv", "backend_api", "runner"],
+    "skills": ["procurement-analysis", "cross-border-risk-screening", "commercial-operations"],
+    "outputs": ["procurement_analyses", "data/research/procurement-<demand>-<YYYYMMDD>.md", "data/runtime/agent_outputs/"],
+    "permissions": {
+      "read": ["companies", "demand_opportunities", "compute_supply_resources", "supplier_verification", "demand_qualification", "matching_records", "procurement_analyses", "evidence_registry", "agent_tasks", "docs/"],
+      "write": ["procurement_analyses", "data/research/", "data/runtime/agent_outputs/"]
+    },
+    "approval_required": true,
+    "task_types": ["report_render", "csv_ingest"],
+    "status": "ACTIVE",
+    "notes": "分析报告默认 DRAFT；不得给出报价、不替客户决策；对外交付版本与费用结构须 CEO 审批。"
+  },
+  {
+    "name": "Cross-border Research",
+    "display_name_zh": "跨境合规研究",
+    "role": "对跨境算力场景做数据出境、出口管制、制裁与合同责任的公开信息初筛",
+    "objective": "产出风险登记、事实清单与待律师确认问题，识别红线并升级 CEO，不提供法律意见",
+    "inputs": ["demand_opportunities", "compute_supply_resources", "evidence_registry", "docs/handover-20261113/证据表 B-E01~B-E31"],
+    "tools": ["web_search", "web_fetch", "read", "write", "edit", "python", "sqlite3", "backend_api", "runner"],
+    "skills": ["cross-border-risk-screening", "evidence-management"],
+    "outputs": ["evidence_registry", "data/research/risk-<subject>-<YYYYMMDD>.md", "approvals(approval_type=CROSS_BORDER_RISK)", "data/runtime/agent_outputs/"],
+    "permissions": {
+      "read": ["companies", "demand_opportunities", "compute_supply_resources", "evidence_registry", "supplier_verification", "demand_qualification", "matching_records", "agent_tasks", "docs/"],
+      "write": ["evidence_registry", "data/research/", "data/runtime/agent_outputs/"]
+    },
+    "approval_required": true,
+    "task_types": ["evidence_check", "report_render"],
+    "status": "ACTIVE",
+    "notes": "只做事实与风险识别，不下合规/法律结论；红线结论必须经 CEO 和律师复核。"
+  },
+  {
+    "name": "Commercial Operations",
+    "display_name_zh": "商务运营",
+    "role": "把已核验匹配推进为商机，准备披露/引荐/条款/协议材料与 CEO 审批包",
+    "objective": "维护商机阶段与活动留痕，确保双付披露、费用结构合规、审批可追溯，不对外联系或成交",
+    "inputs": ["matching_records", "demand_opportunities", "compute_supply_resources", "commercial_opportunities", "quotes", "contracts_metadata", "approvals", "PROJECT_BRIEF §6"],
+    "tools": ["web_search", "web_fetch", "read", "write", "edit", "python", "sqlite3", "csv", "backend_api", "runner"],
+    "skills": ["commercial-operations", "demand-qualification", "supplier-verification"],
+    "outputs": ["commercial_opportunities", "quotes", "contracts_metadata", "approvals", "data/research/commercial-<opp>-<YYYYMMDD>.md", "data/runtime/agent_outputs/"],
+    "permissions": {
+      "read": ["companies", "demand_opportunities", "compute_supply_resources", "matching_records", "supplier_verification", "demand_qualification", "commercial_opportunities", "quotes", "contracts_metadata", "approvals", "project_activities", "agent_tasks", "docs/"],
+      "write": ["commercial_opportunities", "quotes", "contracts_metadata", "approvals", "data/research/", "data/runtime/agent_outputs/"]
+    },
+    "approval_required": true,
+    "task_types": ["report_render", "data_audit"],
+    "status": "ACTIVE",
+    "notes": "不联系客户/供应商、不报价、不签约、不收款、不托管资金；披露、引荐、费用条款、合同、收款全部 CEO 执行。"
+  },
+  {
+    "name": "Data Manager",
+    "display_name_zh": "数据管理员",
+    "role": "维护数据库完整性、证据链、导入导出与备份元数据",
+    "objective": "执行数据体检、证据缺口审计、CSV 导入校验与 schema 一致性检查，保障 18 张表数据可用",
+    "inputs": ["data/runtime/app.db", "app/data/schema.sql", "docs/07_ai_system/SPEC_DATABASE.md", "data/import/*.csv", "evidence_registry"],
+    "tools": ["read", "write", "edit", "python", "sqlite3", "csv", "git", "backend_api", "runner"],
+    "skills": ["evidence-management", "gpu-spec-normalization"],
+    "outputs": ["data/runtime/agent_outputs/", "data/research/evidence-gaps-<YYYYMMDD>.md", "agent_tasks", "project_activities", "audit_logs"],
+    "permissions": {
+      "read": ["companies", "demand_opportunities", "compute_supply_resources", "compute_specifications", "evidence_registry", "supplier_verification", "demand_qualification", "matching_records", "procurement_analyses", "commercial_opportunities", "quotes", "contracts_metadata", "agent_tasks", "project_activities", "knowledge_records", "audit_logs", "approvals", "backup_records", "data/import/", "data/runtime/agent_outputs/"],
+      "write": ["agent_tasks", "project_activities", "audit_logs", "data/runtime/agent_outputs/", "data/research/"]
+    },
+    "approval_required": false,
+    "task_types": ["data_audit", "evidence_check", "csv_ingest", "schema_validate"],
+    "status": "ACTIVE",
+    "notes": "只读业务表 + 写自己的任务状态与产物；不直接改业务数据（由后端 API/人工执行）；markdown/csv 产物写入被 gitignore 的 data/runtime/。"
+  },
+  {
+    "name": "QA",
+    "display_name_zh": "质量保证",
+    "role": "校验 Agent/Skill 注册完整性、数据一致性、状态机合法性与产物质量",
+    "objective": "对注册表、技能、runner 产物、状态机跳级、证据覆盖与红线执行做独立复核，输出问题清单",
+    "inputs": ["agents/registry.json", ".dsh/skills/*/SKILL.md", "tests/test_agents_runner.py", "data/runtime/app.db", "docs/07_ai_system/SPEC_DATABASE.md"],
+    "tools": ["read", "write", "edit", "python", "sqlite3", "csv", "git", "backend_api", "runner"],
+    "skills": ["evidence-management", "compute-matching", "commercial-operations"],
+    "outputs": ["data/research/qa-report-<YYYYMMDD>.md", "data/runtime/agent_outputs/", "agent_tasks"],
+    "permissions": {
+      "read": ["agents/", ".dsh/skills/", "tests/", "docs/", "companies", "demand_opportunities", "compute_supply_resources", "evidence_registry", "supplier_verification", "demand_qualification", "matching_records", "procurement_analyses", "commercial_opportunities", "quotes", "contracts_metadata", "agent_tasks", "project_activities", "audit_logs", "approvals", "backup_records"],
+      "write": ["agent_tasks", "data/research/", "data/runtime/agent_outputs/"]
+    },
+    "approval_required": false,
+    "task_types": ["schema_validate", "data_audit", "evidence_check", "csv_ingest"],
+    "status": "ACTIVE",
+    "notes": "只做只读校验与问题报告，不修改业务数据、不修改他人写入范围；发现 P0 问题须立即报 Lead/CEO。"
+  }
+]

@@ -1,7 +1,7 @@
 ﻿# ============================================================
 # 中国算力出海 · 开发环境初始化（D 盘优先，不改全局环境变量）
 # 用法：
-#   pwsh -NoProfile -File scripts/setup_dev_env.ps1
+#   powershell -NoProfile -ExecutionPolicy Bypass -File scripts/setup_dev_env.ps1
 #   . .\scripts\setup_dev_env.ps1        # 在当前会话生效
 # 说明：
 #   - 只影响当前进程，不写系统/用户级环境变量。

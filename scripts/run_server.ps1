@@ -1,4 +1,4 @@
-# 启动 CCGS 后端开发服务器（默认 127.0.0.1:8770）
+﻿# 启动 CCGS 后端开发服务器（默认 127.0.0.1:8770）
 # 用法：powershell -ExecutionPolicy Bypass -File scripts/run_server.ps1
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot

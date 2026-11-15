@@ -41,7 +41,7 @@ suanlichuhai/
 │   ├── 05_research/             第一轮真实公开信息研究（需求/供给/匹配/证据）
 │   ├── 06_operations/           经营手册、商机漏斗、审批矩阵、风险登记、跨境流程
 │   ├── 07_ai_system/            数据库/API 契约、架构、工具清单、Agent-Skill 规范
-│   ├── 08_acceptance/           验收报告、交接说明
+│   ├── 08_final/                验收报告、交接说明、CEO 下一步
 │   └── handover-20261113/       2026-11-13 历史交接快照（75 份资料，只读）
 ├── app/
 │   ├── backend/                 Flask + SQLite 后端（REST API）
@@ -67,14 +67,17 @@ cd D:\ChinaCompute\suanlichuhai
 # 1) 初始化开发环境（仅当前进程生效，缓存/临时文件全部指向 D 盘）
 . .\scripts\setup_dev_env.ps1
 
-# 2) 初始化数据库 + 种子数据
-python scripts\init_db.py            # 或 pwsh -File scripts\init_db.ps1
+# 2) 初始化数据库 + 历史种子数据（幂等）
+powershell -ExecutionPolicy Bypass -File scripts\init_db.ps1       # 等价于 python -m app.backend.db 再 python -m app.backend.seed
 
-# 3) 启动后端 + 前端工作台（同源）
+# 3)（可选）导入第一轮研究线索/证据（幂等，全部 LEAD 级，不自动升级）
+python scripts\import_research.py    # 读 data\research\*.csv；重复运行自动 SKIP
+
+# 4) 启动后端 + 前端工作台（同源）
 python -m app.backend.server
 # 浏览器打开 http://127.0.0.1:8770
 
-# 4) 运行测试
+# 5) 运行测试
 python -m unittest discover -s tests -v
 ```
 
@@ -88,7 +91,7 @@ python -m unittest discover -s tests -v
 |---|---|---|
 | Web 搜索 | ✅ 可用 | Harness 内置 web_search |
 | 网页读取 | ✅ 可用 | web_fetch，HTML → 文本 |
-| 浏览器自动化 | ❌ 不可用 | 未安装 Playwright，不做登录/点击/截图 |
+| 浏览器自动化 | 🟡 部分可用 | 本机 Chrome + CDP 可做本地页面自测/截图；未装 Playwright，不做自动登录/发帖/外联 |
 | PDF 解析 | 🟡 部分可用 | PyMuPDF 可提取文本；无 OCR，扫描件不可读 |
 | Python / SQLite / CSV | ✅ 可用 | 后端与数据分析主力 |
 | Git / GitHub 推送 | ✅ 可用 | 凭据有效；仅 Lead 执行 |
@@ -106,7 +109,7 @@ python -m unittest discover -s tests -v
 - **绝不入库**：真实联系人/私人联系方式、真实供应商报价、合同、密钥、真实业务数据库、客户隐私数据、未授权商业资料。
 - 运行时真实数据只存本地 `data/runtime/`（已 gitignore）。
 - 敏感商务资料放 `private/` 或 `**/99-敏感商务_仅本项目/`（已 gitignore）。
-- 提交前运行：`pwsh -File scripts\sensitive_scan.ps1`。
+- 提交前运行：`powershell -ExecutionPolicy Bypass -File scripts\sensitive_scan.ps1`。
 - 建议 CEO 将仓库改为 Private（**需 CEO 授权，项目未自行修改**）。
 
 ---

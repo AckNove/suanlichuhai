@@ -36,7 +36,7 @@
 └───────────────┬─────────────────────────────────────────────┘
                 │
 ┌───────────────▼─────────────────────────────────────────────┐
-│ SQLite  data/runtime/ccgs.db（运行时生成，.gitignore 排除）   │
+│ SQLite  data/runtime/app.db（运行时生成，.gitignore 排除）   │
 │  18 张表：公司/需求/供给/规格/证据/核验/资格/匹配/分析/       │
 │  商机/报价/合同元数据/Agent任务/项目活动/知识/审计/审批/备份   │
 └─────────────────────────────────────────────────────────────┘
@@ -46,7 +46,7 @@
 │  ├─ agents/runner.py    11 个 Agent 的确定性任务执行器        │
 │  ├─ .dsh/skills/        10 个项目 Skill（研究/核验/匹配规范）  │
 │  ├─ data/research/      第一轮研究 CSV（可导入）               │
-│  └─ data/runtime/backups/ 备份文件（不入库）                  │
+│  └─ backups/            备份文件（不入 Git）                  │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -148,7 +148,7 @@ quotes / contracts_metadata → WON / LOST
 | 测试 | `python -m unittest discover -s tests -v` | — | 单元/集成测试 |
 | 冒烟 | `pwsh -File scripts/smoke_test.ps1` | 8770 | 起服务→打 11 个端点→关服务 |
 | Agent 任务 | `python agents/runner.py run-all` | — | 确定性批处理，产物落 `data/runtime/agent_outputs/` |
-| 备份 | `pwsh -File scripts/backup_db.ps1` | — | `data/runtime/backups/` |
+| 备份 | `POST /api/backup`（或 `backup.create_backup()`） | — | `backups/app-YYYYMMDD-HHMMSS.db`（sha256 存 `backup_records`） |
 
 ---
 
@@ -170,6 +170,6 @@ quotes / contracts_metadata → WON / LOST
 1. 单机单用户；无登录鉴权（仅绑定 127.0.0.1；如需多用户须先加认证）。
 2. SQLite 非生产级高并发；数据量超过数十万行需迁移 PostgreSQL。
 3. 匹配引擎为规则评分，不是市场定价；分数不代表报价或成交概率。
-4. 无浏览器自动化、无邮件/私信/拨号发送能力、无 MCP 数据源；研究只能基于公开网页文本。
+4. 浏览器自动化仅限本机 Chrome + CDP 的本地自测/截图（本轮前端 18 路由自测已用）；无邮件/私信/拨号发送能力；无 MCP 数据源；研究以公开网页文本为主。
 5. 前端无构建链；代码量增长后建议引入打包（当前刻意保持零依赖）。
 6. Agent 为「可审计的确定性任务执行器」，不是自主 LLM 循环；LLM 决策痕迹记录在任务记录中。

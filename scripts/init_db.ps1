@@ -1,4 +1,4 @@
-# 初始化 CCGS 数据库（幂等建表 + 幂等种子）
+﻿# 初始化 CCGS 数据库（幂等建表 + 幂等种子）
 # 用法：powershell -ExecutionPolicy Bypass -File scripts/init_db.ps1
 #   -NoSeed   只建表，不导入种子数据
 param(

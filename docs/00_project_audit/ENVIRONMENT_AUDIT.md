@@ -38,7 +38,7 @@
 |------|------|------|
 | Web Search | 可用 | `web_search` 工具 |
 | 网页读取 | 可用 | `web_fetch`（HTTP 抓取，非浏览器渲染） |
-| 浏览器自动化 | **不可用** | 无 Playwright/Chrome 控制工具；不得宣称具备 |
+| 浏览器自动化 | **部分可用** | 本机已装 Chrome（`C:\Program Files\Google\Chrome\Application\chrome.exe`），本轮通过 Chrome DevTools Protocol 无头自测前端 18 路由；无 Playwright，不做自动登录/外联 |
 | PDF 解析 | 部分可用 | PyMuPDF / PyPDF2 可本地解析，无 OCR |
 | Python 执行 | 可用 | 3.9.1 |
 | Git | 可用 | push 凭据已存在（Windows Credential Manager，username=AckNove） |

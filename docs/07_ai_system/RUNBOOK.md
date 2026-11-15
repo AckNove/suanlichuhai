@@ -49,10 +49,18 @@ cd D:\ChinaCompute\suanlichuhai
 python -m app.backend.seed
 ```
 
-（等价方式：`pwsh -File scripts/init_db.ps1`；若脚本尚未提供，使用上面的 Python 命令。）
-首次运行会：创建 `data/runtime/ccgs.db` → 建 18 张表 → 导入历史线索种子（18 供给 / 9 需求 / 3 匹配，全部 `LEAD`/`PUBLIC_LEAD`/`verified=0`）→ 写入演示用的规格、证据、Agent 任务、知识库、审批记录。
+（等价方式：`powershell -ExecutionPolicy Bypass -File scripts/init_db.ps1`；若脚本尚未提供，使用上面的 Python 命令。）
+首次运行会：创建 `data/runtime/app.db` → 建 18 张表 → 导入历史线索种子（18 供给 / 9 需求 / 3 匹配，全部 `LEAD`/`PUBLIC_LEAD`/`verified=0`）→ 写入演示用的规格、证据、Agent 任务、知识库、审批记录。
 
 > 种子数据在 `notes` 字段标注 `seed:history-import` 或 `seed:demo`，可用于区分「历史导入线索」与「演示数据」。
+
+**（可选）导入第一轮研究线索与证据**（幂等；只建 LEAD/DRAFT/OPEN，不自动升级）：
+
+```powershell
+python scripts\import_research.py
+```
+
+导入内容：`data/research/` 下 4 个 CSV（需求 5 / 供给 3 / 匹配 3 / 证据 40），并生成 2 条审批（`APR-R1-001` 登甲首联授权、`APR-R1-002` 仓库改 Private）与 2 条知识记录（`KN-R1-001/002`）。重复运行按固定 ID 判重（SKIP），不会重复写入。
 
 ---
 
@@ -118,7 +126,7 @@ python -m http.server 8899
 python -m unittest discover -s tests -v
 ```
 
-或 `pwsh -File scripts\run_tests.ps1`。
+或 `powershell -ExecutionPolicy Bypass -File scripts\run_tests.ps1`。
 覆盖：数据库建表/种子、API CRUD 与状态机校验、匹配评分边界、CSV 导入导出、备份恢复、Agent runner。
 
 **冒烟测试**（起服务→打端点→关服务）：
@@ -137,14 +145,14 @@ python -m unittest discover -s tests -v
 见 `docs/07_ai_system/BACKUP_RESTORE.md`。最短路径：
 
 ```powershell
-# 备份（生成 data/runtime/backups/ccgs-YYYYMMDD-HHMMSS.db + .sha256）
-python -m app.backend.backup
+# 备份（生成 backups\app-YYYYMMDD-HHMMSS.db，登记 backup_records，自动保留最近 20 份）
+python -c "from app.backend import db, backup; c = db.ensure_schema(); print(backup.create_backup(c, note='manual'))"
 
-# 查看备份
-Get-ChildItem data\runtime\backups\
+# 查看备份（也可直接 curl http://127.0.0.1:8770/api/backup）
+Get-ChildItem backups\
 
-# 恢复（需先在 UI 输入 RESTORE 或命令行确认）
-python -m app.backend.backup --restore data\runtime\backups\<file>.db --confirm RESTORE
+# 恢复（后端运行中亦可；API 校验 backup_records.sha256，并要求 confirm=RESTORE）
+Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8770/api/backup/restore -ContentType 'application/json' -Body '{"file_path":"backups\\app-<时间戳>.db","confirm":"RESTORE"}'
 ```
 
 **恢复前先备份当前库。** 备份文件不入 Git。

@@ -1,6 +1,6 @@
 ﻿# ============================================================
 # CCGS 冒烟测试：启动后端 -> 请求关键端点 -> 关闭
-# 用法：pwsh -NoProfile -File scripts/smoke_test.ps1
+# 用法：powershell -NoProfile -ExecutionPolicy Bypass -File scripts/smoke_test.ps1
 # 退出码：0 通过；1 失败
 # ============================================================
 $ErrorActionPreference = 'Continue'

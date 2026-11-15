@@ -2,7 +2,7 @@
 
 **核验时间：** 2026-11-16（Asia/Shanghai，第 1 轮）
 **核验方法：** 逐项实际调用或检查版本/路径，不以「文档声称」为准。
-**结论摘要：** 可完成「公开信息研究 + 本地系统开发 + 文档生产」；**不具备**浏览器自动化、外联发送、自动报价、MCP 集成能力。
+**结论摘要：** 可完成「公开信息研究 + 本地系统开发 + 文档生产 + 本地浏览器自测」；**不具备**外联发送、自动报价、MCP 集成能力；浏览器自动化仅限本机 Chrome 自测（非生产外联）。
 
 ---
 
@@ -12,7 +12,7 @@
 |---|---|---|---|---|
 | 1 | Web 搜索 | ✅ 可用 | Harness `web_search` 实际返回结果 | 结果可能滞后/被 SEO 污染，必须记录来源与获取时间 |
 | 2 | 网页读取 | ✅ 可用 | `web_fetch` 返回解码文本 | 动态渲染页面、登录墙、反爬页面读不到；读不到须标注「未获取」 |
-| 3 | 浏览器自动化 | ❌ 不可用 | 无 Playwright/Selenium；未安装 Chromium 驱动 | 不做登录、点击、截图、表单填写 |
+| 3 | 浏览器自动化 | 🟡 部分可用 | 本机 Chrome + CDP 8888/9222 可无头自测与截图（本轮前端 18 路由自测已验证）；无 Playwright | 不做自动登录、发帖、表单提交、外联 |
 | 4 | PDF 文本解析 | 🟡 部分可用 | PyMuPDF(fitz) 1.x、PyPDF2 已安装 | 无 OCR；扫描件、图片型 PDF 不可读 |
 | 5 | Python 运行时 | ✅ 可用 | Python 3.9.1（D:\DeliveryOptimization\miniconda） | 3.9 语法限制：无 match、无运行时 `X \| Y` 注解 |
 | 6 | 数据库 | ✅ 可用 | SQLite3（标准库） | 单机单文件；并发写入受限；非生产级 |
@@ -45,7 +45,7 @@
 | fitz (PyMuPDF) / PyPDF2 | ✅ | PDF 文本提取 |
 | fastapi / uvicorn | ❌ | 未安装，不使用 |
 | pytest | ❌ | 未安装，使用标准库 unittest |
-| playwright / pytesseract | ❌ | 不可用（浏览器自动化 / OCR 缺失） |
+| playwright / pytesseract | ❌ | 未安装；浏览器自测改用本机 Chrome + CDP；OCR 仍缺失 |
 | python-pptx | ❌ | 不生成 PPT |
 
 > 不安装新依赖的理由：CEO 授权「优先使用已有工具和低成本方案」「不盲目安装大量插件」。如后续确需 pytest/OCR，列 CEO 待批。
@@ -75,7 +75,7 @@
 - 项目根：`D:\ChinaCompute\suanlichuhai`（不在 C 盘；C 盘无项目副本）。
 - 缓存：`D:\ChinaCompute\cache`（pip/uv/npm）；临时：`D:\ChinaCompute\temp`；均由 `scripts/setup_dev_env.ps1` 进程级设置。
 - Harness 本体安装在 `C:\Users\25803\AppData\Local\Programs\DeepSeek Harness`，其自身缓存不可迁移，**如实报告**；项目不向其写入业务数据。
-- 浏览器：不可用（无 Playwright），因此不做页面截图与交互式核验。
+- 浏览器：本机 Chrome + CDP 可做本地自测/截图（无 Playwright）；不做登录墙、验证码与外联操作。
 - MCP：0 连接。
 
 ---

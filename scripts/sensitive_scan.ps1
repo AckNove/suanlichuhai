@@ -1,6 +1,6 @@
 ﻿# ============================================================
 # CCGS 提交前敏感信息扫描
-# 用法：pwsh -NoProfile -File scripts/sensitive_scan.ps1 [-Strict]
+# 用法：powershell -NoProfile -ExecutionPolicy Bypass -File scripts/sensitive_scan.ps1 [-Strict]
 #   -Strict：发现邮箱/电话等疑似联系方式也返回失败（默认为 WARN）
 # 扫描范围：Git 跟踪文件 + 未忽略的未跟踪文件（即将提交的内容）
 # 退出码：0 通过；1 发现高危项（密钥、私钥、数据库文件）

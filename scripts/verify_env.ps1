@@ -1,6 +1,6 @@
 ﻿# ============================================================
 # CCGS 环境核验脚本：检查 D 盘、Python、Git、依赖、工具能力
-# 用法：pwsh -NoProfile -File scripts/verify_env.ps1
+# 用法：powershell -NoProfile -ExecutionPolicy Bypass -File scripts/verify_env.ps1
 # 只读检查，不修改任何环境变量或系统配置
 # ============================================================
 $ErrorActionPreference = 'Continue'
