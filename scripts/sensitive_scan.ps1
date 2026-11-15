@@ -1,4 +1,4 @@
-# ============================================================
+﻿# ============================================================
 # CCGS 提交前敏感信息扫描
 # 用法：pwsh -NoProfile -File scripts/sensitive_scan.ps1 [-Strict]
 #   -Strict：发现邮箱/电话等疑似联系方式也返回失败（默认为 WARN）
@@ -8,9 +8,11 @@
 param([switch]$Strict)
 $ErrorActionPreference = 'Stop'
 $proj = 'D:\ChinaCompute\suanlichuhai'
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+$OutputEncoding = [System.Text.Encoding]::UTF8
 Push-Location $proj
 try {
-    $files = git ls-files --cached --others --exclude-standard 2>$null
+    $files = git -c core.quotepath=false ls-files --cached --others --exclude-standard 2>$null
 } finally { }
 if (-not $files) { Write-Host '[WARN] 无文件可扫描'; Pop-Location; exit 0 }
 
@@ -33,11 +35,15 @@ $medPatterns = @(
 $placeholderDomains = @('example.com','example.org','yourcompany','domain.com','placeholder','xxx.com','test.com','sample.com','localhost')
 $binaryExt = @('.db','.sqlite','.sqlite3','.zip','.7z','.rar','.pdf','.xlsx','.xls','.docx','.pptx','.jpg','.jpeg','.png','.pem','.key','.p12','.pfx')
 
-$highHits = @(); $medHits = @(); $binHits = @()
+$highHits = @(); $medHits = @(); $binHits = @(); $binLegacy = @()
 foreach ($f in $files) {
     if ($f -eq $self) { continue }
     $ext = [IO.Path]::GetExtension($f).ToLower()
-    if ($binaryExt -contains $ext) { $binHits += $f; continue }
+    if ($binaryExt -contains $ext) {
+        # 历史交接快照中的既有二进制（2026-11-13 之前由前任提交，不得删除历史文件）→ 仅提示
+        if ($f -like 'docs/handover-20261113/*' -or $f -like 'downloads/*') { $binLegacy += $f; continue }
+        $binHits += $f; continue
+    }
     if (-not (Test-Path -LiteralPath $f -PathType Leaf)) { continue }
     try { $lines = Get-Content -LiteralPath $f -Encoding UTF8 -ErrorAction Stop } catch { continue }
     $ln = 0
@@ -63,7 +69,8 @@ foreach ($f in $files) {
 
 Write-Host "==== CCGS 敏感信息扫描 ====" -ForegroundColor Cyan
 Write-Host "扫描文件数：$(@($files).Count)"
-Write-Host "高危命中：$($highHits.Count)  中危命中：$($medHits.Count)  二进制/数据文件：$($binHits.Count)"
+Write-Host "高危命中：$($highHits.Count)  中危命中：$($medHits.Count)  二进制/数据文件：$($binHits.Count)  历史既有二进制（豁免）：$($binLegacy.Count)"
+if ($binLegacy.Count -gt 0) { Write-Host "[INFO] 历史交接快照既有二进制，保持原样不新增：" -ForegroundColor DarkGray; $binLegacy | ForEach-Object { Write-Host "  - $_" } }
 if ($binHits.Count -gt 0) {
     Write-Host "[FAIL] 以下二进制/数据文件不应提交（检查 .gitignore）：" -ForegroundColor Red
     $binHits | Select-Object -First 20 | ForEach-Object { Write-Host "  - $_" }
