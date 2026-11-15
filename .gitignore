@@ -1,0 +1,110 @@
+# =====================================================================
+# CCGS 中国算力国际化项目 - Git 忽略规则
+# 原则：GitHub 只存代码与脱敏文档；真实业务数据、凭据、合同一律不入库
+# =====================================================================
+
+# ---- 本地运行时数据（真实数据库、备份、Agent 产物）----
+data/runtime/
+data/private/
+private/
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+backups/
+data/backups/
+
+# ---- 敏感商务材料（真实报价、合同、联系人、客户隐私）----
+**/99-敏感商务_仅本项目/**
+**/*保密*
+**/*机密*
+**/*confidential*
+**/*_secret*
+docs/private/
+docs/contracts/signed/
+contracts/signed/
+
+# ---- 凭据与密钥 ----
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+secrets*.json
+token*.txt
+*_token*
+.github/tokens/
+.ssh/
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+*.log
+
+# ---- Node（如后续引入）----
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ---- 编辑器与系统 ----
+.vscode/*
+!.vscode/settings.json.example
+.idea/
+*.swp
+*.swo
+*~
+Thumbs.db
+Desktop.ini
+.DS_Store
+$RECYCLE.BIN/
+
+# ---- 临时与缓存（统一放 D:\ChinaCompute\temp，不入库）----
+temp/
+tmp/
+cache/
+.cache/
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+downloads/*.zip
+!downloads/.gitkeep
+
+# ---- 大文件与二进制研究缓存 ----
+*.pdf
+*.zip
+*.7z
+*.rar
+*.xlsx
+*.xls
+*.docx
+*.pptx
+!docs/**/*.md
+!app/data/seed/*.csv
+
+# ---- 运行产物 ----
+logs/
+run/
+*.pid
+*.port
+.serve/
