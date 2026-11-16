@@ -46,7 +46,8 @@
 - **数据边界**：全部实体为公开线索或种子演示数据，状态最高 `LEAD`、`verified=0`；不含真实联系人姓名/邮箱/电话、报价、合同、预算、成交与回款。
 - **脱敏验证（入库前实测）**：0 邮箱 / 0 手机号 / 0 本机绝对路径；`MANIFEST.json` 12 个文件 sha256 校验全部一致。
 - **扫描策略**：`scripts/sensitive_scan.ps1` 将 `data/demo/*` 列为「已批准脱敏演示数据」单独提示，不计入 FAIL；历史交接二进制仍单列豁免。
-- **提交**：`data(demo): publish sanitized demo database and agent outputs`（SHA 见 `git log`）；推送后 `git ls-remote` 与本地 HEAD 一致。
+- **提交**：`563b853e473bdb1923450489f8c378fc9806bd5e`（`data(demo): publish sanitized demo database, agent outputs and sha256 manifest (CEO-approved)`）；已推送 `origin/ai-build-20261116`，`git ls-remote` 与本地 HEAD 一致。
+- **可用性验证**：用演示库副本启动服务，`/api/health/db` 返回 18 张业务表，`/api/dashboard` 计数与 MANIFEST 一致（公司 34 / 需求 14 / 供给 21 / 证据 71 / 匹配 6 / 商机 1 / 待审批 9 / 知识 8 / Agent 任务 11）。
 
 ## 5. 未推送/未提交文件说明
 
