@@ -1,0 +1,86 @@
+{
+  "dataset": "CCGS sanitized demo dataset",
+  "generated_at": "2026-11-16T11:12:03+08:00",
+  "source": "data/runtime/app.db（种子 + 第一轮公开研究导入，全部线索等级 LEAD）",
+  "sanitized": "已扫描：0 邮箱 / 0 手机号 / 0 本机绝对路径；不含真实联系人、报价、合同、预算",
+  "table_count": 19,
+  "counts": {
+    "companies": 34,
+    "demand_opportunities": 14,
+    "compute_supply_resources": 21,
+    "compute_specifications": 10,
+    "evidence_registry": 71,
+    "matching_records": 6,
+    "commercial_opportunities": 1,
+    "approvals": 9,
+    "knowledge_records": 8,
+    "agent_tasks": 11,
+    "supplier_verification": 0,
+    "demand_qualification": 0,
+    "quotes": 0,
+    "contracts_metadata": 0
+  },
+  "agent_outputs": 11,
+  "files": [
+    {
+      "path": "data/demo/app-demo.db",
+      "sha256": "d924f9f0863d0f8d15ea1b54a4bf3782976d50af4b2ddb6632be149319cbb508",
+      "bytes": 544768
+    },
+    {
+      "path": "data/demo/agent_outputs/TASK-20261116-001_data_audit.json",
+      "sha256": "39269361634094d65e2e63621af0aaf3e173c03241943b2b8252647fa5bcf0a9",
+      "bytes": 7680
+    },
+    {
+      "path": "data/demo/agent_outputs/TASK-20261116-002_report_render.md",
+      "sha256": "9358c6e172dfb957f4538dd5e799137cd5fb7b590dacfb009c2ba78f84723c06",
+      "bytes": 2844
+    },
+    {
+      "path": "data/demo/agent_outputs/TASK-20261116-003_evidence_check.json",
+      "sha256": "401de1df0fbc663cdbde4b4f3f49e15f0f8fa646cd2e460603cd20de4be37f45",
+      "bytes": 3342
+    },
+    {
+      "path": "data/demo/agent_outputs/TASK-20261116-004_evidence_check.json",
+      "sha256": "78af00ed55b0d1bc292c3c372a6ba158403cb288e587b2ccd54538e4611a54ac",
+      "bytes": 3338
+    },
+    {
+      "path": "data/demo/agent_outputs/TASK-20261116-005_report_render.md",
+      "sha256": "f853e435fc44ad50d0aed307d064a067ef1fdd50e031c79455e6e3e4865102c8",
+      "bytes": 4211
+    },
+    {
+      "path": "data/demo/agent_outputs/TASK-20261116-006_match_compute.json",
+      "sha256": "2e74a96c5074c3657c190bcd20145a0b9e7cbac787288a6ee657befde4b4fd86",
+      "bytes": 39816
+    },
+    {
+      "path": "data/demo/agent_outputs/TASK-20261116-007_report_render.md",
+      "sha256": "5fa5e596b1eae79707b71461b44fb5fdf6ae4b4e62af41bbcca4d4086d85006e",
+      "bytes": 4241
+    },
+    {
+      "path": "data/demo/agent_outputs/TASK-20261116-008_evidence_check.json",
+      "sha256": "9323b5f9b781ed7cb42ae9b055112e794d84bdf080148d0ffa222d56185f9204",
+      "bytes": 3338
+    },
+    {
+      "path": "data/demo/agent_outputs/TASK-20261116-009_data_audit.json",
+      "sha256": "28a53cf8b7d23e81a9dae5c9b0a88ec7fe72b86d784688e968609f0a506e0590",
+      "bytes": 7703
+    },
+    {
+      "path": "data/demo/agent_outputs/TASK-20261116-010_schema_validate.json",
+      "sha256": "99be76547cbf6779fff64d4538feea1877f4a15dabdcf0ca515efdfab731bdf1",
+      "bytes": 9424
+    },
+    {
+      "path": "data/demo/agent_outputs/TASK-20261116-011_schema_validate.json",
+      "sha256": "1b67687bbb7584bce6d47b1eed7688e01857cdd9703a4a571ec7f51157523025",
+      "bytes": 9416
+    }
+  ]
+}

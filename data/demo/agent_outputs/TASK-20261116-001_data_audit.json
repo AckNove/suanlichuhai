@@ -1,0 +1,314 @@
+{
+  "generated_at": "2026-11-16T01:00:18",
+  "task_id": "TASK-20261116-001",
+  "agent_name": "Research Director",
+  "db": "data/runtime/app.db",
+  "tables": {
+    "companies": true,
+    "demand_opportunities": true,
+    "compute_supply_resources": true,
+    "compute_specifications": true,
+    "evidence_registry": true,
+    "supplier_verification": true,
+    "demand_qualification": true,
+    "matching_records": true,
+    "procurement_analyses": true,
+    "commercial_opportunities": true,
+    "quotes": true,
+    "contracts_metadata": true,
+    "agent_tasks": true,
+    "project_activities": true,
+    "knowledge_records": true,
+    "audit_logs": true,
+    "approvals": true,
+    "backup_records": true
+  },
+  "missing_tables": [],
+  "counts": {
+    "companies": 27,
+    "demand_opportunities": 9,
+    "compute_supply_resources": 18,
+    "compute_specifications": 10,
+    "evidence_registry": 31,
+    "supplier_verification": 0,
+    "demand_qualification": 0,
+    "matching_records": 3,
+    "procurement_analyses": 0,
+    "commercial_opportunities": 0,
+    "quotes": 0,
+    "contracts_metadata": 0,
+    "agent_tasks": 11,
+    "project_activities": 1,
+    "knowledge_records": 6,
+    "audit_logs": 1,
+    "approvals": 7,
+    "backup_records": 0
+  },
+  "distributions": {
+    "companies.status": {
+      "LEAD": 27
+    },
+    "companies.company_type": {
+      "SUPPLIER": 18,
+      "DEMANDER": 9
+    },
+    "demand_opportunities.lead_grade": {
+      "PUBLIC_LEAD": 9
+    },
+    "demand_opportunities.status": {
+      "LEAD": 9
+    },
+    "compute_supply_resources.status": {
+      "LEAD": 18
+    },
+    "matching_records.recommendation": {
+      "(NULL)": 3
+    },
+    "supplier_verification.status": {},
+    "demand_qualification.status": {},
+    "agent_tasks.status": {
+      "QUEUED": 10,
+      "RUNNING": 1
+    }
+  },
+  "invalid_status_values": [],
+  "entities_without_evidence": {
+    "companies": {
+      "total": 27,
+      "items": [
+        {
+          "id": "C-20261102-001",
+          "label": "阿里云"
+        },
+        {
+          "id": "C-20261102-002",
+          "label": "腾讯"
+        },
+        {
+          "id": "C-20261102-003",
+          "label": "华为"
+        },
+        {
+          "id": "C-20261102-004",
+          "label": "中国移动"
+        },
+        {
+          "id": "C-20261102-005",
+          "label": "中国电信"
+        },
+        {
+          "id": "C-20261102-006",
+          "label": "中国联通"
+        },
+        {
+          "id": "C-20261102-007",
+          "label": "Aolani"
+        },
+        {
+          "id": "C-20261112-001",
+          "label": "硅基流动"
+        },
+        {
+          "id": "C-20261112-002",
+          "label": "创世华彩 / Nexhina"
+        },
+        {
+          "id": "C-20261112-003",
+          "label": "中数通"
+        },
+        {
+          "id": "C-20261112-004",
+          "label": "广东越动"
+        },
+        {
+          "id": "C-20261112-005",
+          "label": "壹通道"
+        },
+        {
+          "id": "C-20261112-006",
+          "label": "华胜天成"
+        },
+        {
+          "id": "C-20261112-007",
+          "label": "智子芯元"
+        },
+        {
+          "id": "C-20261112-008",
+          "label": "蜂助手"
+        },
+        {
+          "id": "C-20261112-009",
+          "label": "天顿数据"
+        },
+        {
+          "id": "C-20261112-010",
+          "label": "登甲智能"
+        },
+        {
+          "id": "C-20261112-011",
+          "label": "点动数字"
+        },
+        {
+          "id": "C-20261116-001",
+          "label": "ByteDance"
+        },
+        {
+          "id": "C-20261116-002",
+          "label": "Alibaba"
+        },
+        {
+          "id": "C-20261116-003",
+          "label": "Tencent"
+        },
+        {
+          "id": "C-20261116-004",
+          "label": "DeepSeek"
+        },
+        {
+          "id": "C-20261116-005",
+          "label": "HUMAIN"
+        },
+        {
+          "id": "C-20261116-006",
+          "label": "G42"
+        },
+        {
+          "id": "C-20261116-007",
+          "label": "Sea Limited"
+        },
+        {
+          "id": "C-20261116-008",
+          "label": "Nebius"
+        },
+        {
+          "id": "C-20261116-009",
+          "label": "GoTo Group"
+        }
+      ]
+    },
+    "demand_opportunities": {
+      "total": 9,
+      "items": [
+        {
+          "id": "DEM-20261102-001",
+          "label": "ByteDance｜公开算力需求线索"
+        },
+        {
+          "id": "DEM-20261102-002",
+          "label": "Alibaba｜公开算力需求线索"
+        },
+        {
+          "id": "DEM-20261102-003",
+          "label": "Tencent｜公开算力需求线索"
+        },
+        {
+          "id": "DEM-20261102-004",
+          "label": "DeepSeek｜公开算力需求线索"
+        },
+        {
+          "id": "DEM-20261102-005",
+          "label": "HUMAIN｜公开算力需求线索"
+        },
+        {
+          "id": "DEM-20261102-006",
+          "label": "G42｜公开算力需求线索"
+        },
+        {
+          "id": "DEM-20261102-007",
+          "label": "Sea Limited｜公开算力需求线索"
+        },
+        {
+          "id": "DEM-20261102-008",
+          "label": "Nebius｜公开算力需求线索"
+        },
+        {
+          "id": "DEM-20261102-009",
+          "label": "GoTo Group｜公开算力需求线索"
+        }
+      ]
+    },
+    "compute_supply_resources": {
+      "total": 18,
+      "items": [
+        {
+          "id": "SUP-20261102-001",
+          "label": "(未命名)"
+        },
+        {
+          "id": "SUP-20261102-002",
+          "label": "(未命名)"
+        },
+        {
+          "id": "SUP-20261102-003",
+          "label": "(未命名)"
+        },
+        {
+          "id": "SUP-20261102-004",
+          "label": "(未命名)"
+        },
+        {
+          "id": "SUP-20261102-005",
+          "label": "(未命名)"
+        },
+        {
+          "id": "SUP-20261102-006",
+          "label": "(未命名)"
+        },
+        {
+          "id": "SUP-20261102-007",
+          "label": "(未命名)"
+        },
+        {
+          "id": "SUP-20261112-001",
+          "label": "(未命名)"
+        },
+        {
+          "id": "SUP-20261112-002",
+          "label": "(未命名)"
+        },
+        {
+          "id": "SUP-20261112-003",
+          "label": "(未命名)"
+        },
+        {
+          "id": "SUP-20261112-004",
+          "label": "(未命名)"
+        },
+        {
+          "id": "SUP-20261112-005",
+          "label": "(未命名)"
+        },
+        {
+          "id": "SUP-20261112-006",
+          "label": "(未命名)"
+        },
+        {
+          "id": "SUP-20261112-007",
+          "label": "(未命名)"
+        },
+        {
+          "id": "SUP-20261112-008",
+          "label": "(未命名)"
+        },
+        {
+          "id": "SUP-20261112-009",
+          "label": "(未命名)"
+        },
+        {
+          "id": "SUP-20261112-010",
+          "label": "(未命名)"
+        },
+        {
+          "id": "SUP-20261112-011",
+          "label": "(未命名)"
+        }
+      ]
+    }
+  },
+  "orphan_evidence": [],
+  "notes": [
+    "只读审计：runner 不修改业务数据。",
+    "entities_without_evidence 按 evidence_registry.subject_type/subject_id 关联。",
+    "invalid_status_values 为发现项，不代表 runner 会修复。"
+  ]
+}

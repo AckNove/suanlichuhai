@@ -81,6 +81,15 @@ python -m app.backend.server
 python -m unittest discover -s tests -v
 ```
 
+> **想直接看到真实数据状态？** 仓库已附脱敏演示库 `data/demo/app-demo.db`（公司 34 / 需求 14 / 供给 21 / 证据 71 / 匹配 6 / 商机 1 / 审批 9；全部 LEAD 级、verified=0，无真实联系人/报价/合同）。直接覆盖运行库即可打开：
+>
+> ```powershell
+> Copy-Item data\demo\app-demo.db data\runtime\app.db -Force
+> python -m app.backend.server
+> ```
+>
+> 数据说明、边界与 sha256 校验见 [`data/demo/README.md`](data/demo/README.md) 与 `data/demo/MANIFEST.json`。
+
 详细说明见 [docs/07_ai_system/RUNBOOK.md](docs/07_ai_system/RUNBOOK.md)。
 
 ---

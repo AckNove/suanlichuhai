@@ -35,13 +35,15 @@ $medPatterns = @(
 $placeholderDomains = @('example.com','example.org','yourcompany','domain.com','placeholder','xxx.com','test.com','sample.com','localhost')
 $binaryExt = @('.db','.sqlite','.sqlite3','.zip','.7z','.rar','.pdf','.xlsx','.xls','.docx','.pptx','.jpg','.jpeg','.png','.pem','.key','.p12','.pfx')
 
-$highHits = @(); $medHits = @(); $binHits = @(); $binLegacy = @()
+$highHits = @(); $medHits = @(); $binHits = @(); $binLegacy = @(); $binDemo = @()
 foreach ($f in $files) {
     if ($f -eq $self) { continue }
     $ext = [IO.Path]::GetExtension($f).ToLower()
     if ($binaryExt -contains $ext) {
         # 历史交接快照中的既有二进制（2026-11-13 之前由前任提交，不得删除历史文件）→ 仅提示
         if ($f -like 'docs/handover-20261113/*' -or $f -like 'downloads/*') { $binLegacy += $f; continue }
+        # 脱敏演示数据：CEO 批准入库（无真实联系人/报价/合同），见 data/demo/README.md
+        if ($f -like 'data/demo/*') { $binDemo += $f; continue }
         $binHits += $f; continue
     }
     if (-not (Test-Path -LiteralPath $f -PathType Leaf)) { continue }
@@ -71,8 +73,9 @@ foreach ($f in $files) {
 
 Write-Host "==== CCGS 敏感信息扫描 ====" -ForegroundColor Cyan
 Write-Host "扫描文件数：$(@($files).Count)"
-Write-Host "高危命中：$($highHits.Count)  中危命中：$($medHits.Count)  二进制/数据文件：$($binHits.Count)  历史既有二进制（豁免）：$($binLegacy.Count)"
+Write-Host "高危命中：$($highHits.Count)  中危命中：$($medHits.Count)  二进制/数据文件：$($binHits.Count)  历史既有二进制（豁免）：$($binLegacy.Count)  脱敏演示数据：$($binDemo.Count)"
 if ($binLegacy.Count -gt 0) { Write-Host "[INFO] 历史交接快照既有二进制，保持原样不新增：" -ForegroundColor DarkGray; $binLegacy | ForEach-Object { Write-Host "  - $_" } }
+if ($binDemo.Count -gt 0) { Write-Host "[INFO] 脱敏演示数据（CEO 批准入库，已扫描无联系方式）：" -ForegroundColor DarkGray; $binDemo | ForEach-Object { Write-Host "  - $_" } }
 if ($binHits.Count -gt 0) {
     Write-Host "[FAIL] 以下二进制/数据文件不应提交（检查 .gitignore）：" -ForegroundColor Red
     $binHits | Select-Object -First 20 | ForEach-Object { Write-Host "  - $_" }

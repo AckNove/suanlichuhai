@@ -40,7 +40,15 @@
 | 2026-11-16 01:22 | `backup.py` 无 CLI，原文档 `python -m app.backend.backup` 无效 | 文档改为 `backup.create_backup()` + `POST /api/backup[/restore]`，路径统一 `backups\app-*.db` |
 | 2026-11-16 01:24 | 本机无 PowerShell 7（`pwsh` 不在 PATH） | 文档与脚本用法统一改为 `powershell -ExecutionPolicy Bypass -File` |
 
-## 4. 未推送/未提交文件说明
+## 4. 脱敏演示数据同步（CEO 2026-11-16 批准）
+
+- **内容**：`data/demo/app-demo.db`（演示库一致性快照，19 个对象 = 18 张业务表 + `sqlite_sequence`）、`data/demo/agent_outputs/`（11 个 Agent 任务产物）、`data/demo/MANIFEST.json`（逐文件 sha256 与计数）、`data/demo/README.md`（用途/边界/用法/重建方式）。
+- **数据边界**：全部实体为公开线索或种子演示数据，状态最高 `LEAD`、`verified=0`；不含真实联系人姓名/邮箱/电话、报价、合同、预算、成交与回款。
+- **脱敏验证（入库前实测）**：0 邮箱 / 0 手机号 / 0 本机绝对路径；`MANIFEST.json` 12 个文件 sha256 校验全部一致。
+- **扫描策略**：`scripts/sensitive_scan.ps1` 将 `data/demo/*` 列为「已批准脱敏演示数据」单独提示，不计入 FAIL；历史交接二进制仍单列豁免。
+- **提交**：`data(demo): publish sanitized demo database and agent outputs`（SHA 见 `git log`）；推送后 `git ls-remote` 与本地 HEAD 一致。
+
+## 5. 未推送/未提交文件说明
 
 - `data/runtime/**`：运行时数据库、备份、Agent 产物（`.gitignore` 排除，设计如此）。
 - `data/private/**`、`private/**`、`backups/**`：私有/敏感/备份目录（`.gitignore` 排除）。
@@ -48,7 +56,7 @@
 - 历史分支 `cursor/handover-20261113-5b36`：未合并、未删除，作为历史存档保留（远程仍在）。
 - `main`：未改动（仍为初始提交 `d0a9a30d61285471a0cfd0264fdc4b1015256f86`）。
 
-## 5. 远程核对命令（可复现）
+## 6. 远程核对命令（可复现）
 
 ```powershell
 git branch -vv
@@ -57,7 +65,7 @@ git ls-remote origin
 # 期望：refs/heads/ai-build-20261116 指向本地 HEAD
 ```
 
-## 6. 最终核对快照
+## 7. 最终核对快照
 
 - 远程默认分支 `main`：`d0a9a30d61285471a0cfd0264fdc4b1015256f86`（未改动）。
 - 历史分支 `cursor/handover-20261113-5b36`：`ca825a581135f9fadb3786fd240581be398587cd`（未删除、未合并）。

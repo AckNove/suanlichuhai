@@ -1,0 +1,88 @@
+{
+  "generated_at": "2026-11-16T01:00:18",
+  "task_id": "TASK-20261116-004",
+  "agent_name": "Supplier Verification",
+  "db": "data/runtime/app.db",
+  "total": 31,
+  "counts": {
+    "missing_url_or_source_title": 0,
+    "invalid_or_missing_confidence": 0,
+    "unverified": 0,
+    "not_cross_verified": 8,
+    "missing_retrieved_at": 0
+  },
+  "missing_url_or_source_title": [],
+  "invalid_or_missing_confidence": [],
+  "unverified": [],
+  "not_cross_verified": [
+    {
+      "evidence_id": "B-E01",
+      "subject_type": "CLAIM",
+      "subject_id": null,
+      "claim": "算力出海主要两模式：境内部署跨境销售；境外直接部署销售；并涉数据出境、出口管制、电信许可等",
+      "confidence": "MEDIUM",
+      "url": "https://www.zhonglun.com/research/articles/56462.html"
+    },
+    {
+      "evidence_id": "B-E02",
+      "subject_type": "CLAIM",
+      "subject_id": null,
+      "claim": "中国科技公司赴海外训练以获取 NVIDIA 芯片算力的报道",
+      "confidence": "MEDIUM",
+      "url": "https://www.reuters.com/world/china/chinas-tech-giants-move-ai-model-training-overseas-tap-nvidia-chips-ft-reports-2025-11-27/"
+    },
+    {
+      "evidence_id": "B-E03",
+      "subject_type": "CLAIM",
+      "subject_id": null,
+      "claim": "中国相关方经东南亚等地远程使用先进 NVIDIA 算力；现行管制侧重物理芯片；RASA 立法讨论中",
+      "confidence": "MEDIUM",
+      "url": "https://www.cnbc.com/2026/08/19/china-ai-nvidia-chips-us-export-controls.html"
+    },
+    {
+      "evidence_id": "B-E05",
+      "subject_type": "CLAIM",
+      "subject_id": null,
+      "claim": "东南亚/中东/非洲为算力服务商海外机遇区域；数据本地化与地缘带来不确定性",
+      "confidence": "HIGH",
+      "url": "https://www.caict.ac.cn/english/research/whitepapers/202509/P020250903607185479827.pdf"
+    },
+    {
+      "evidence_id": "B-E06",
+      "subject_type": "CLAIM",
+      "subject_id": null,
+      "claim": "中国算力基础设施规模与运营商布局",
+      "confidence": "HIGH",
+      "url": "https://www.caict.ac.cn/kxyj/qwfb/ztbg/202511/P020251106555844142999.pdf"
+    },
+    {
+      "evidence_id": "B-E07",
+      "subject_type": "CLAIM",
+      "subject_id": null,
+      "claim": "马来西亚收紧数据中心扩张节奏、可能影响相关算力获取",
+      "confidence": "MEDIUM",
+      "url": "https://www.reuters.com/world/china/malaysia-reins-data-centre-growth-complicating-chinas-ai-chip-access-2025-09-12/"
+    },
+    {
+      "evidence_id": "B-E09",
+      "subject_type": "CLAIM",
+      "subject_id": null,
+      "claim": "全球数据中心容量或向约200GW发展（JLL估计，经CNBC转述）",
+      "confidence": "MEDIUM",
+      "url": null
+    },
+    {
+      "evidence_id": "B-E11",
+      "subject_type": "CLAIM",
+      "subject_id": null,
+      "claim": "向境外提供算力/Token是否构成中国法下技术出口缺乏明确执法案例",
+      "confidence": "MEDIUM",
+      "url": null
+    }
+  ],
+  "missing_retrieved_at": [],
+  "notes": [
+    "待补清单：url/来源标题为空、confidence 缺失或非法、cross_verified=0 的条目。",
+    "runner 只报告缺口，不修改 evidence_registry。"
+  ]
+}

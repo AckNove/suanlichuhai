@@ -74,6 +74,7 @@ python agents\runner.py validate         # 期望：11 agents / 10 skills / 0 pr
 - 运行库：`data/runtime/app.db`（**被 .gitignore 排除，不进仓库**；由 `python -m app.backend.seed` 生成）
 - 演示种子数据：公司 27 / 供给 18 / 需求 9 / 证据 31 / 匹配 3 / 规格 10 / Agent 任务 11 / 审批 7 / 知识 6
 - 研究数据：`data/research/*.csv`（5 需求 + 3 供给 + 3 匹配 + 40 证据），已脱敏、无个人联系方式
+- **脱敏演示库（已入库，CEO 批准）**：`data/demo/app-demo.db` + `data/demo/agent_outputs/` + `MANIFEST.json`。内容 = 种子 + 研究导入后的演示快照（公司 34 / 需求 14 / 供给 21 / 证据 71 / 匹配 6 / 商机 1 / 审批 9 / 知识 8 / Agent 任务 11），全部 LEAD 级、verified=0，已扫描 0 邮箱/0 手机号/0 绝对路径；用法与校验见 `data/demo/README.md`
 
 ---
 

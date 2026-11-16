@@ -1,0 +1,994 @@
+{
+  "generated_at": "2026-11-16T01:00:18",
+  "task_id": "TASK-20261116-006",
+  "agent_name": "Matching Engine",
+  "db": "data/runtime/app.db",
+  "implementation_source": "app.backend.matching.score_match",
+  "implementation_status": "BACKEND",
+  "backend_import_note": null,
+  "backend_errors": [],
+  "demand_id": "DEM-20261102-001",
+  "demand_title": "ByteDance｜公开算力需求线索",
+  "supply_count": 18,
+  "results": [
+    {
+      "supply_id": "SUP-20261102-001",
+      "supply_company_id": "C-20261102-001",
+      "score": 35.0,
+      "dimensions": {
+        "gpu_model": {
+          "score": 5.0,
+          "max": 30,
+          "reason": "需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）"
+        },
+        "scale": {
+          "score": 10.0,
+          "max": 20,
+          "reason": "需求未给出最小 GPU 规模，无法完整评估"
+        },
+        "workload": {
+          "score": 0.0,
+          "max": 15,
+          "reason": "训练/微调需求，但供给未标注训练能力"
+        },
+        "location": {
+          "score": 10.0,
+          "max": 10,
+          "reason": "供给国家出现在需求地点偏好中：中国"
+        },
+        "delivery": {
+          "score": 5.0,
+          "max": 10,
+          "reason": "需求时间窗未明确，无法判断交付周期"
+        },
+        "network": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "网络/互联信息未知，需补充带宽与拓扑"
+        },
+        "compliance": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "合规尚未筛查，按未筛查计 2 分"
+        },
+        "trust": {
+          "score": 1.0,
+          "max": 5,
+          "reason": "供应商/资源仍为公开线索（LEAD），未核验"
+        }
+      },
+      "why_match": "地点/数据驻留 10.0/10：供给国家出现在需求地点偏好中：中国",
+      "why_not_match": "GPU 型号 5.0/30：需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）；负载能力 0.0/15：训练/微调需求，但供给未标注训练能力；网络 2.0/5：网络/互联信息未知，需补充带宽与拓扑；合规 2.0/5：合规尚未筛查，按未筛查计 2 分；信任/核验 1.0/5：供应商/资源仍为公开线索（LEAD），未核验",
+      "risks": [],
+      "redlines": "",
+      "confidence": "LOW",
+      "recommendation": "REJECT",
+      "unknown_dimensions": 0
+    },
+    {
+      "supply_id": "SUP-20261102-002",
+      "supply_company_id": "C-20261102-002",
+      "score": 35.0,
+      "dimensions": {
+        "gpu_model": {
+          "score": 5.0,
+          "max": 30,
+          "reason": "需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）"
+        },
+        "scale": {
+          "score": 10.0,
+          "max": 20,
+          "reason": "需求未给出最小 GPU 规模，无法完整评估"
+        },
+        "workload": {
+          "score": 0.0,
+          "max": 15,
+          "reason": "训练/微调需求，但供给未标注训练能力"
+        },
+        "location": {
+          "score": 10.0,
+          "max": 10,
+          "reason": "供给国家出现在需求地点偏好中：中国"
+        },
+        "delivery": {
+          "score": 5.0,
+          "max": 10,
+          "reason": "需求时间窗未明确，无法判断交付周期"
+        },
+        "network": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "网络/互联信息未知，需补充带宽与拓扑"
+        },
+        "compliance": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "合规尚未筛查，按未筛查计 2 分"
+        },
+        "trust": {
+          "score": 1.0,
+          "max": 5,
+          "reason": "供应商/资源仍为公开线索（LEAD），未核验"
+        }
+      },
+      "why_match": "地点/数据驻留 10.0/10：供给国家出现在需求地点偏好中：中国",
+      "why_not_match": "GPU 型号 5.0/30：需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）；负载能力 0.0/15：训练/微调需求，但供给未标注训练能力；网络 2.0/5：网络/互联信息未知，需补充带宽与拓扑；合规 2.0/5：合规尚未筛查，按未筛查计 2 分；信任/核验 1.0/5：供应商/资源仍为公开线索（LEAD），未核验",
+      "risks": [],
+      "redlines": "",
+      "confidence": "LOW",
+      "recommendation": "REJECT",
+      "unknown_dimensions": 0
+    },
+    {
+      "supply_id": "SUP-20261102-003",
+      "supply_company_id": "C-20261102-003",
+      "score": 35.0,
+      "dimensions": {
+        "gpu_model": {
+          "score": 5.0,
+          "max": 30,
+          "reason": "需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）"
+        },
+        "scale": {
+          "score": 10.0,
+          "max": 20,
+          "reason": "需求未给出最小 GPU 规模，无法完整评估"
+        },
+        "workload": {
+          "score": 0.0,
+          "max": 15,
+          "reason": "训练/微调需求，但供给未标注训练能力"
+        },
+        "location": {
+          "score": 10.0,
+          "max": 10,
+          "reason": "供给国家出现在需求地点偏好中：中国"
+        },
+        "delivery": {
+          "score": 5.0,
+          "max": 10,
+          "reason": "需求时间窗未明确，无法判断交付周期"
+        },
+        "network": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "网络/互联信息未知，需补充带宽与拓扑"
+        },
+        "compliance": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "合规尚未筛查，按未筛查计 2 分"
+        },
+        "trust": {
+          "score": 1.0,
+          "max": 5,
+          "reason": "供应商/资源仍为公开线索（LEAD），未核验"
+        }
+      },
+      "why_match": "地点/数据驻留 10.0/10：供给国家出现在需求地点偏好中：中国",
+      "why_not_match": "GPU 型号 5.0/30：需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）；负载能力 0.0/15：训练/微调需求，但供给未标注训练能力；网络 2.0/5：网络/互联信息未知，需补充带宽与拓扑；合规 2.0/5：合规尚未筛查，按未筛查计 2 分；信任/核验 1.0/5：供应商/资源仍为公开线索（LEAD），未核验",
+      "risks": [],
+      "redlines": "",
+      "confidence": "LOW",
+      "recommendation": "REJECT",
+      "unknown_dimensions": 0
+    },
+    {
+      "supply_id": "SUP-20261102-004",
+      "supply_company_id": "C-20261102-004",
+      "score": 35.0,
+      "dimensions": {
+        "gpu_model": {
+          "score": 5.0,
+          "max": 30,
+          "reason": "需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）"
+        },
+        "scale": {
+          "score": 10.0,
+          "max": 20,
+          "reason": "需求未给出最小 GPU 规模，无法完整评估"
+        },
+        "workload": {
+          "score": 0.0,
+          "max": 15,
+          "reason": "训练/微调需求，但供给未标注训练能力"
+        },
+        "location": {
+          "score": 10.0,
+          "max": 10,
+          "reason": "供给国家出现在需求地点偏好中：中国"
+        },
+        "delivery": {
+          "score": 5.0,
+          "max": 10,
+          "reason": "需求时间窗未明确，无法判断交付周期"
+        },
+        "network": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "网络/互联信息未知，需补充带宽与拓扑"
+        },
+        "compliance": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "合规尚未筛查，按未筛查计 2 分"
+        },
+        "trust": {
+          "score": 1.0,
+          "max": 5,
+          "reason": "供应商/资源仍为公开线索（LEAD），未核验"
+        }
+      },
+      "why_match": "地点/数据驻留 10.0/10：供给国家出现在需求地点偏好中：中国",
+      "why_not_match": "GPU 型号 5.0/30：需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）；负载能力 0.0/15：训练/微调需求，但供给未标注训练能力；网络 2.0/5：网络/互联信息未知，需补充带宽与拓扑；合规 2.0/5：合规尚未筛查，按未筛查计 2 分；信任/核验 1.0/5：供应商/资源仍为公开线索（LEAD），未核验",
+      "risks": [],
+      "redlines": "",
+      "confidence": "LOW",
+      "recommendation": "REJECT",
+      "unknown_dimensions": 0
+    },
+    {
+      "supply_id": "SUP-20261102-005",
+      "supply_company_id": "C-20261102-005",
+      "score": 35.0,
+      "dimensions": {
+        "gpu_model": {
+          "score": 5.0,
+          "max": 30,
+          "reason": "需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）"
+        },
+        "scale": {
+          "score": 10.0,
+          "max": 20,
+          "reason": "需求未给出最小 GPU 规模，无法完整评估"
+        },
+        "workload": {
+          "score": 0.0,
+          "max": 15,
+          "reason": "训练/微调需求，但供给未标注训练能力"
+        },
+        "location": {
+          "score": 10.0,
+          "max": 10,
+          "reason": "供给国家出现在需求地点偏好中：中国"
+        },
+        "delivery": {
+          "score": 5.0,
+          "max": 10,
+          "reason": "需求时间窗未明确，无法判断交付周期"
+        },
+        "network": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "网络/互联信息未知，需补充带宽与拓扑"
+        },
+        "compliance": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "合规尚未筛查，按未筛查计 2 分"
+        },
+        "trust": {
+          "score": 1.0,
+          "max": 5,
+          "reason": "供应商/资源仍为公开线索（LEAD），未核验"
+        }
+      },
+      "why_match": "地点/数据驻留 10.0/10：供给国家出现在需求地点偏好中：中国",
+      "why_not_match": "GPU 型号 5.0/30：需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）；负载能力 0.0/15：训练/微调需求，但供给未标注训练能力；网络 2.0/5：网络/互联信息未知，需补充带宽与拓扑；合规 2.0/5：合规尚未筛查，按未筛查计 2 分；信任/核验 1.0/5：供应商/资源仍为公开线索（LEAD），未核验",
+      "risks": [],
+      "redlines": "",
+      "confidence": "LOW",
+      "recommendation": "REJECT",
+      "unknown_dimensions": 0
+    },
+    {
+      "supply_id": "SUP-20261102-006",
+      "supply_company_id": "C-20261102-006",
+      "score": 35.0,
+      "dimensions": {
+        "gpu_model": {
+          "score": 5.0,
+          "max": 30,
+          "reason": "需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）"
+        },
+        "scale": {
+          "score": 10.0,
+          "max": 20,
+          "reason": "需求未给出最小 GPU 规模，无法完整评估"
+        },
+        "workload": {
+          "score": 0.0,
+          "max": 15,
+          "reason": "训练/微调需求，但供给未标注训练能力"
+        },
+        "location": {
+          "score": 10.0,
+          "max": 10,
+          "reason": "供给国家出现在需求地点偏好中：中国"
+        },
+        "delivery": {
+          "score": 5.0,
+          "max": 10,
+          "reason": "需求时间窗未明确，无法判断交付周期"
+        },
+        "network": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "网络/互联信息未知，需补充带宽与拓扑"
+        },
+        "compliance": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "合规尚未筛查，按未筛查计 2 分"
+        },
+        "trust": {
+          "score": 1.0,
+          "max": 5,
+          "reason": "供应商/资源仍为公开线索（LEAD），未核验"
+        }
+      },
+      "why_match": "地点/数据驻留 10.0/10：供给国家出现在需求地点偏好中：中国",
+      "why_not_match": "GPU 型号 5.0/30：需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）；负载能力 0.0/15：训练/微调需求，但供给未标注训练能力；网络 2.0/5：网络/互联信息未知，需补充带宽与拓扑；合规 2.0/5：合规尚未筛查，按未筛查计 2 分；信任/核验 1.0/5：供应商/资源仍为公开线索（LEAD），未核验",
+      "risks": [],
+      "redlines": "",
+      "confidence": "LOW",
+      "recommendation": "REJECT",
+      "unknown_dimensions": 0
+    },
+    {
+      "supply_id": "SUP-20261102-007",
+      "supply_company_id": "C-20261102-007",
+      "score": 35.0,
+      "dimensions": {
+        "gpu_model": {
+          "score": 5.0,
+          "max": 30,
+          "reason": "需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）"
+        },
+        "scale": {
+          "score": 10.0,
+          "max": 20,
+          "reason": "需求未给出最小 GPU 规模，无法完整评估"
+        },
+        "workload": {
+          "score": 0.0,
+          "max": 15,
+          "reason": "训练/微调需求，但供给未标注训练能力"
+        },
+        "location": {
+          "score": 10.0,
+          "max": 10,
+          "reason": "供给国家出现在需求地点偏好中：中国"
+        },
+        "delivery": {
+          "score": 5.0,
+          "max": 10,
+          "reason": "需求时间窗未明确，无法判断交付周期"
+        },
+        "network": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "网络/互联信息未知，需补充带宽与拓扑"
+        },
+        "compliance": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "合规尚未筛查，按未筛查计 2 分"
+        },
+        "trust": {
+          "score": 1.0,
+          "max": 5,
+          "reason": "供应商/资源仍为公开线索（LEAD），未核验"
+        }
+      },
+      "why_match": "地点/数据驻留 10.0/10：供给国家出现在需求地点偏好中：中国",
+      "why_not_match": "GPU 型号 5.0/30：需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）；负载能力 0.0/15：训练/微调需求，但供给未标注训练能力；网络 2.0/5：网络/互联信息未知，需补充带宽与拓扑；合规 2.0/5：合规尚未筛查，按未筛查计 2 分；信任/核验 1.0/5：供应商/资源仍为公开线索（LEAD），未核验",
+      "risks": [],
+      "redlines": "",
+      "confidence": "LOW",
+      "recommendation": "REJECT",
+      "unknown_dimensions": 0
+    },
+    {
+      "supply_id": "SUP-20261112-001",
+      "supply_company_id": "C-20261112-001",
+      "score": 27.0,
+      "dimensions": {
+        "gpu_model": {
+          "score": 5.0,
+          "max": 30,
+          "reason": "需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）"
+        },
+        "scale": {
+          "score": 10.0,
+          "max": 20,
+          "reason": "需求未给出最小 GPU 规模，无法完整评估"
+        },
+        "workload": {
+          "score": 0.0,
+          "max": 15,
+          "reason": "训练/微调需求，但供给未标注训练能力"
+        },
+        "location": {
+          "score": 2.0,
+          "max": 10,
+          "reason": "地点不一致：供给 北京，需求 中国"
+        },
+        "delivery": {
+          "score": 5.0,
+          "max": 10,
+          "reason": "需求时间窗未明确，无法判断交付周期"
+        },
+        "network": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "网络/互联信息未知，需补充带宽与拓扑"
+        },
+        "compliance": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "合规尚未筛查，按未筛查计 2 分"
+        },
+        "trust": {
+          "score": 1.0,
+          "max": 5,
+          "reason": "供应商/资源仍为公开线索（LEAD），未核验"
+        }
+      },
+      "why_match": "暂无显著匹配优势，各维度得分偏低，仅作为待澄清线索",
+      "why_not_match": "GPU 型号 5.0/30：需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）；负载能力 0.0/15：训练/微调需求，但供给未标注训练能力；地点/数据驻留 2.0/10：地点不一致：供给 北京，需求 中国；网络 2.0/5：网络/互联信息未知，需补充带宽与拓扑；合规 2.0/5：合规尚未筛查，按未筛查计 2 分；信任/核验 1.0/5：供应商/资源仍为公开线索（LEAD），未核验",
+      "risks": [],
+      "redlines": "",
+      "confidence": "LOW",
+      "recommendation": "REJECT",
+      "unknown_dimensions": 0
+    },
+    {
+      "supply_id": "SUP-20261112-002",
+      "supply_company_id": "C-20261112-002",
+      "score": 27.0,
+      "dimensions": {
+        "gpu_model": {
+          "score": 5.0,
+          "max": 30,
+          "reason": "需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）"
+        },
+        "scale": {
+          "score": 10.0,
+          "max": 20,
+          "reason": "需求未给出最小 GPU 规模，无法完整评估"
+        },
+        "workload": {
+          "score": 0.0,
+          "max": 15,
+          "reason": "训练/微调需求，但供给未标注训练能力"
+        },
+        "location": {
+          "score": 2.0,
+          "max": 10,
+          "reason": "地点不一致：供给 北京，需求 中国"
+        },
+        "delivery": {
+          "score": 5.0,
+          "max": 10,
+          "reason": "需求时间窗未明确，无法判断交付周期"
+        },
+        "network": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "网络/互联信息未知，需补充带宽与拓扑"
+        },
+        "compliance": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "合规尚未筛查，按未筛查计 2 分"
+        },
+        "trust": {
+          "score": 1.0,
+          "max": 5,
+          "reason": "供应商/资源仍为公开线索（LEAD），未核验"
+        }
+      },
+      "why_match": "暂无显著匹配优势，各维度得分偏低，仅作为待澄清线索",
+      "why_not_match": "GPU 型号 5.0/30：需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）；负载能力 0.0/15：训练/微调需求，但供给未标注训练能力；地点/数据驻留 2.0/10：地点不一致：供给 北京，需求 中国；网络 2.0/5：网络/互联信息未知，需补充带宽与拓扑；合规 2.0/5：合规尚未筛查，按未筛查计 2 分；信任/核验 1.0/5：供应商/资源仍为公开线索（LEAD），未核验",
+      "risks": [],
+      "redlines": "",
+      "confidence": "LOW",
+      "recommendation": "REJECT",
+      "unknown_dimensions": 0
+    },
+    {
+      "supply_id": "SUP-20261112-003",
+      "supply_company_id": "C-20261112-003",
+      "score": 27.0,
+      "dimensions": {
+        "gpu_model": {
+          "score": 5.0,
+          "max": 30,
+          "reason": "需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）"
+        },
+        "scale": {
+          "score": 10.0,
+          "max": 20,
+          "reason": "需求未给出最小 GPU 规模，无法完整评估"
+        },
+        "workload": {
+          "score": 0.0,
+          "max": 15,
+          "reason": "训练/微调需求，但供给未标注训练能力"
+        },
+        "location": {
+          "score": 2.0,
+          "max": 10,
+          "reason": "地点不一致：供给 广州（总部公开介绍；机房未核实），需求 中国"
+        },
+        "delivery": {
+          "score": 5.0,
+          "max": 10,
+          "reason": "需求时间窗未明确，无法判断交付周期"
+        },
+        "network": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "网络/互联信息未知，需补充带宽与拓扑"
+        },
+        "compliance": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "合规尚未筛查，按未筛查计 2 分"
+        },
+        "trust": {
+          "score": 1.0,
+          "max": 5,
+          "reason": "供应商/资源仍为公开线索（LEAD），未核验"
+        }
+      },
+      "why_match": "暂无显著匹配优势，各维度得分偏低，仅作为待澄清线索",
+      "why_not_match": "GPU 型号 5.0/30：需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）；负载能力 0.0/15：训练/微调需求，但供给未标注训练能力；地点/数据驻留 2.0/10：地点不一致：供给 广州（总部公开介绍；机房未核实），需求 中国；网络 2.0/5：网络/互联信息未知，需补充带宽与拓扑；合规 2.0/5：合规尚未筛查，按未筛查计 2 分；信任/核验 1.0/5：供应商/资源仍为公开线索（LEAD），未核验",
+      "risks": [],
+      "redlines": "",
+      "confidence": "LOW",
+      "recommendation": "REJECT",
+      "unknown_dimensions": 0
+    },
+    {
+      "supply_id": "SUP-20261112-004",
+      "supply_company_id": "C-20261112-004",
+      "score": 27.0,
+      "dimensions": {
+        "gpu_model": {
+          "score": 5.0,
+          "max": 30,
+          "reason": "需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）"
+        },
+        "scale": {
+          "score": 10.0,
+          "max": 20,
+          "reason": "需求未给出最小 GPU 规模，无法完整评估"
+        },
+        "workload": {
+          "score": 0.0,
+          "max": 15,
+          "reason": "训练/微调需求，但供给未标注训练能力"
+        },
+        "location": {
+          "score": 2.0,
+          "max": 10,
+          "reason": "地点不一致：供给 广东，需求 中国"
+        },
+        "delivery": {
+          "score": 5.0,
+          "max": 10,
+          "reason": "需求时间窗未明确，无法判断交付周期"
+        },
+        "network": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "网络/互联信息未知，需补充带宽与拓扑"
+        },
+        "compliance": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "合规尚未筛查，按未筛查计 2 分"
+        },
+        "trust": {
+          "score": 1.0,
+          "max": 5,
+          "reason": "供应商/资源仍为公开线索（LEAD），未核验"
+        }
+      },
+      "why_match": "暂无显著匹配优势，各维度得分偏低，仅作为待澄清线索",
+      "why_not_match": "GPU 型号 5.0/30：需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）；负载能力 0.0/15：训练/微调需求，但供给未标注训练能力；地点/数据驻留 2.0/10：地点不一致：供给 广东，需求 中国；网络 2.0/5：网络/互联信息未知，需补充带宽与拓扑；合规 2.0/5：合规尚未筛查，按未筛查计 2 分；信任/核验 1.0/5：供应商/资源仍为公开线索（LEAD），未核验",
+      "risks": [],
+      "redlines": "",
+      "confidence": "LOW",
+      "recommendation": "REJECT",
+      "unknown_dimensions": 0
+    },
+    {
+      "supply_id": "SUP-20261112-005",
+      "supply_company_id": "C-20261112-005",
+      "score": 27.0,
+      "dimensions": {
+        "gpu_model": {
+          "score": 5.0,
+          "max": 30,
+          "reason": "需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）"
+        },
+        "scale": {
+          "score": 10.0,
+          "max": 20,
+          "reason": "需求未给出最小 GPU 规模，无法完整评估"
+        },
+        "workload": {
+          "score": 0.0,
+          "max": 15,
+          "reason": "训练/微调需求，但供给未标注训练能力"
+        },
+        "location": {
+          "score": 2.0,
+          "max": 10,
+          "reason": "地点不一致：供给 深圳（有香港分支），需求 中国"
+        },
+        "delivery": {
+          "score": 5.0,
+          "max": 10,
+          "reason": "需求时间窗未明确，无法判断交付周期"
+        },
+        "network": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "网络/互联信息未知，需补充带宽与拓扑"
+        },
+        "compliance": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "合规尚未筛查，按未筛查计 2 分"
+        },
+        "trust": {
+          "score": 1.0,
+          "max": 5,
+          "reason": "供应商/资源仍为公开线索（LEAD），未核验"
+        }
+      },
+      "why_match": "暂无显著匹配优势，各维度得分偏低，仅作为待澄清线索",
+      "why_not_match": "GPU 型号 5.0/30：需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）；负载能力 0.0/15：训练/微调需求，但供给未标注训练能力；地点/数据驻留 2.0/10：地点不一致：供给 深圳（有香港分支），需求 中国；网络 2.0/5：网络/互联信息未知，需补充带宽与拓扑；合规 2.0/5：合规尚未筛查，按未筛查计 2 分；信任/核验 1.0/5：供应商/资源仍为公开线索（LEAD），未核验",
+      "risks": [],
+      "redlines": "",
+      "confidence": "LOW",
+      "recommendation": "REJECT",
+      "unknown_dimensions": 0
+    },
+    {
+      "supply_id": "SUP-20261112-006",
+      "supply_company_id": "C-20261112-006",
+      "score": 27.0,
+      "dimensions": {
+        "gpu_model": {
+          "score": 5.0,
+          "max": 30,
+          "reason": "需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）"
+        },
+        "scale": {
+          "score": 10.0,
+          "max": 20,
+          "reason": "需求未给出最小 GPU 规模，无法完整评估"
+        },
+        "workload": {
+          "score": 0.0,
+          "max": 15,
+          "reason": "训练/微调需求，但供给未标注训练能力"
+        },
+        "location": {
+          "score": 2.0,
+          "max": 10,
+          "reason": "地点不一致：供给 北京（新闻点名津赣皖等项目），需求 中国"
+        },
+        "delivery": {
+          "score": 5.0,
+          "max": 10,
+          "reason": "需求时间窗未明确，无法判断交付周期"
+        },
+        "network": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "网络/互联信息未知，需补充带宽与拓扑"
+        },
+        "compliance": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "合规尚未筛查，按未筛查计 2 分"
+        },
+        "trust": {
+          "score": 1.0,
+          "max": 5,
+          "reason": "供应商/资源仍为公开线索（LEAD），未核验"
+        }
+      },
+      "why_match": "暂无显著匹配优势，各维度得分偏低，仅作为待澄清线索",
+      "why_not_match": "GPU 型号 5.0/30：需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）；负载能力 0.0/15：训练/微调需求，但供给未标注训练能力；地点/数据驻留 2.0/10：地点不一致：供给 北京（新闻点名津赣皖等项目），需求 中国；网络 2.0/5：网络/互联信息未知，需补充带宽与拓扑；合规 2.0/5：合规尚未筛查，按未筛查计 2 分；信任/核验 1.0/5：供应商/资源仍为公开线索（LEAD），未核验",
+      "risks": [],
+      "redlines": "",
+      "confidence": "LOW",
+      "recommendation": "REJECT",
+      "unknown_dimensions": 0
+    },
+    {
+      "supply_id": "SUP-20261112-007",
+      "supply_company_id": "C-20261112-007",
+      "score": 27.0,
+      "dimensions": {
+        "gpu_model": {
+          "score": 5.0,
+          "max": 30,
+          "reason": "需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）"
+        },
+        "scale": {
+          "score": 10.0,
+          "max": 20,
+          "reason": "需求未给出最小 GPU 规模，无法完整评估"
+        },
+        "workload": {
+          "score": 0.0,
+          "max": 15,
+          "reason": "训练/微调需求，但供给未标注训练能力"
+        },
+        "location": {
+          "score": 2.0,
+          "max": 10,
+          "reason": "地点不一致：供给 深圳，需求 中国"
+        },
+        "delivery": {
+          "score": 5.0,
+          "max": 10,
+          "reason": "需求时间窗未明确，无法判断交付周期"
+        },
+        "network": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "网络/互联信息未知，需补充带宽与拓扑"
+        },
+        "compliance": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "合规尚未筛查，按未筛查计 2 分"
+        },
+        "trust": {
+          "score": 1.0,
+          "max": 5,
+          "reason": "供应商/资源仍为公开线索（LEAD），未核验"
+        }
+      },
+      "why_match": "暂无显著匹配优势，各维度得分偏低，仅作为待澄清线索",
+      "why_not_match": "GPU 型号 5.0/30：需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）；负载能力 0.0/15：训练/微调需求，但供给未标注训练能力；地点/数据驻留 2.0/10：地点不一致：供给 深圳，需求 中国；网络 2.0/5：网络/互联信息未知，需补充带宽与拓扑；合规 2.0/5：合规尚未筛查，按未筛查计 2 分；信任/核验 1.0/5：供应商/资源仍为公开线索（LEAD），未核验",
+      "risks": [],
+      "redlines": "",
+      "confidence": "LOW",
+      "recommendation": "REJECT",
+      "unknown_dimensions": 0
+    },
+    {
+      "supply_id": "SUP-20261112-008",
+      "supply_company_id": "C-20261112-008",
+      "score": 27.0,
+      "dimensions": {
+        "gpu_model": {
+          "score": 5.0,
+          "max": 30,
+          "reason": "需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）"
+        },
+        "scale": {
+          "score": 10.0,
+          "max": 20,
+          "reason": "需求未给出最小 GPU 规模，无法完整评估"
+        },
+        "workload": {
+          "score": 0.0,
+          "max": 15,
+          "reason": "训练/微调需求，但供给未标注训练能力"
+        },
+        "location": {
+          "score": 2.0,
+          "max": 10,
+          "reason": "地点不一致：供给 广州；信宜中心仅规划2027，需求 中国"
+        },
+        "delivery": {
+          "score": 5.0,
+          "max": 10,
+          "reason": "需求时间窗未明确，无法判断交付周期"
+        },
+        "network": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "网络/互联信息未知，需补充带宽与拓扑"
+        },
+        "compliance": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "合规尚未筛查，按未筛查计 2 分"
+        },
+        "trust": {
+          "score": 1.0,
+          "max": 5,
+          "reason": "供应商/资源仍为公开线索（LEAD），未核验"
+        }
+      },
+      "why_match": "暂无显著匹配优势，各维度得分偏低，仅作为待澄清线索",
+      "why_not_match": "GPU 型号 5.0/30：需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）；负载能力 0.0/15：训练/微调需求，但供给未标注训练能力；地点/数据驻留 2.0/10：地点不一致：供给 广州；信宜中心仅规划2027，需求 中国；网络 2.0/5：网络/互联信息未知，需补充带宽与拓扑；合规 2.0/5：合规尚未筛查，按未筛查计 2 分；信任/核验 1.0/5：供应商/资源仍为公开线索（LEAD），未核验",
+      "risks": [],
+      "redlines": "",
+      "confidence": "LOW",
+      "recommendation": "REJECT",
+      "unknown_dimensions": 0
+    },
+    {
+      "supply_id": "SUP-20261112-009",
+      "supply_company_id": "C-20261112-009",
+      "score": 27.0,
+      "dimensions": {
+        "gpu_model": {
+          "score": 5.0,
+          "max": 30,
+          "reason": "需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）"
+        },
+        "scale": {
+          "score": 10.0,
+          "max": 20,
+          "reason": "需求未给出最小 GPU 规模，无法完整评估"
+        },
+        "workload": {
+          "score": 0.0,
+          "max": 15,
+          "reason": "训练/微调需求，但供给未标注训练能力"
+        },
+        "location": {
+          "score": 2.0,
+          "max": 10,
+          "reason": "地点不一致：供给 深圳河套，需求 中国"
+        },
+        "delivery": {
+          "score": 5.0,
+          "max": 10,
+          "reason": "需求时间窗未明确，无法判断交付周期"
+        },
+        "network": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "网络/互联信息未知，需补充带宽与拓扑"
+        },
+        "compliance": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "合规尚未筛查，按未筛查计 2 分"
+        },
+        "trust": {
+          "score": 1.0,
+          "max": 5,
+          "reason": "供应商/资源仍为公开线索（LEAD），未核验"
+        }
+      },
+      "why_match": "暂无显著匹配优势，各维度得分偏低，仅作为待澄清线索",
+      "why_not_match": "GPU 型号 5.0/30：需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）；负载能力 0.0/15：训练/微调需求，但供给未标注训练能力；地点/数据驻留 2.0/10：地点不一致：供给 深圳河套，需求 中国；网络 2.0/5：网络/互联信息未知，需补充带宽与拓扑；合规 2.0/5：合规尚未筛查，按未筛查计 2 分；信任/核验 1.0/5：供应商/资源仍为公开线索（LEAD），未核验",
+      "risks": [],
+      "redlines": "",
+      "confidence": "LOW",
+      "recommendation": "REJECT",
+      "unknown_dimensions": 0
+    },
+    {
+      "supply_id": "SUP-20261112-010",
+      "supply_company_id": "C-20261112-010",
+      "score": 27.0,
+      "dimensions": {
+        "gpu_model": {
+          "score": 5.0,
+          "max": 30,
+          "reason": "需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）"
+        },
+        "scale": {
+          "score": 10.0,
+          "max": 20,
+          "reason": "需求未给出最小 GPU 规模，无法完整评估"
+        },
+        "workload": {
+          "score": 0.0,
+          "max": 15,
+          "reason": "训练/微调需求，但供给未标注训练能力"
+        },
+        "location": {
+          "score": 2.0,
+          "max": 10,
+          "reason": "地点不一致：供给 广州海珠，需求 中国"
+        },
+        "delivery": {
+          "score": 5.0,
+          "max": 10,
+          "reason": "需求时间窗未明确，无法判断交付周期"
+        },
+        "network": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "网络/互联信息未知，需补充带宽与拓扑"
+        },
+        "compliance": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "合规尚未筛查，按未筛查计 2 分"
+        },
+        "trust": {
+          "score": 1.0,
+          "max": 5,
+          "reason": "供应商/资源仍为公开线索（LEAD），未核验"
+        }
+      },
+      "why_match": "暂无显著匹配优势，各维度得分偏低，仅作为待澄清线索",
+      "why_not_match": "GPU 型号 5.0/30：需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）；负载能力 0.0/15：训练/微调需求，但供给未标注训练能力；地点/数据驻留 2.0/10：地点不一致：供给 广州海珠，需求 中国；网络 2.0/5：网络/互联信息未知，需补充带宽与拓扑；合规 2.0/5：合规尚未筛查，按未筛查计 2 分；信任/核验 1.0/5：供应商/资源仍为公开线索（LEAD），未核验",
+      "risks": [],
+      "redlines": "",
+      "confidence": "LOW",
+      "recommendation": "REJECT",
+      "unknown_dimensions": 0
+    },
+    {
+      "supply_id": "SUP-20261112-011",
+      "supply_company_id": "C-20261112-011",
+      "score": 27.0,
+      "dimensions": {
+        "gpu_model": {
+          "score": 5.0,
+          "max": 30,
+          "reason": "需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）"
+        },
+        "scale": {
+          "score": 10.0,
+          "max": 20,
+          "reason": "需求未给出最小 GPU 规模，无法完整评估"
+        },
+        "workload": {
+          "score": 0.0,
+          "max": 15,
+          "reason": "训练/微调需求，但供给未标注训练能力"
+        },
+        "location": {
+          "score": 2.0,
+          "max": 10,
+          "reason": "地点不一致：供给 广州（报道含深江潮节点；南沙仅规划），需求 中国"
+        },
+        "delivery": {
+          "score": 5.0,
+          "max": 10,
+          "reason": "需求时间窗未明确，无法判断交付周期"
+        },
+        "network": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "网络/互联信息未知，需补充带宽与拓扑"
+        },
+        "compliance": {
+          "score": 2.0,
+          "max": 5,
+          "reason": "合规尚未筛查，按未筛查计 2 分"
+        },
+        "trust": {
+          "score": 1.0,
+          "max": 5,
+          "reason": "供应商/资源仍为公开线索（LEAD），未核验"
+        }
+      },
+      "why_match": "暂无显著匹配优势，各维度得分偏低，仅作为待澄清线索",
+      "why_not_match": "GPU 型号 5.0/30：需求与供给均未明确 GPU 型号，无法判断兼容性（保守计分）；负载能力 0.0/15：训练/微调需求，但供给未标注训练能力；地点/数据驻留 2.0/10：地点不一致：供给 广州（报道含深江潮节点；南沙仅规划），需求 中国；网络 2.0/5：网络/互联信息未知，需补充带宽与拓扑；合规 2.0/5：合规尚未筛查，按未筛查计 2 分；信任/核验 1.0/5：供应商/资源仍为公开线索（LEAD），未核验",
+      "risks": [],
+      "redlines": "",
+      "confidence": "LOW",
+      "recommendation": "REJECT",
+      "unknown_dimensions": 0
+    }
+  ],
+  "persisted": false,
+  "notes": [
+    "匹配结果仅写入产物文件，不写 matching_records（业务表由后端/人工复核后落库）。",
+    "input_ref 未提供 supply_ids 时，对全部非 REJECTED 供给做只读评分（候选清单）。",
+    "implementation_source=app.backend.matching.* / implementation_status=BACKEND 表示调用后端实现；builtin_equivalent / UNVERIFIED 表示使用 runner 内置的 SPEC 等价评分，未与后端逐例对拍。",
+    "ADVANCE 仅为建议，需人工 REVIEWED 与 CEO 审批才可对外。"
+  ]
+}

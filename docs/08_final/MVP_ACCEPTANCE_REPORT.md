@@ -141,7 +141,7 @@
 
 - 开发分支 `ai-build-20261116`，未覆盖 `main`（main 仍为初始提交 `d0a9a30`），未 force push，未删除历史分支（`cursor/handover-20261113-5b36` 保留）。
 - 仓库当前仍为 **Public**（匿名 `ls-remote` 成功验证）；**建议 CEO 改为 Private**，未经授权未自行修改。
-- 已推内容仅限代码、非敏感文档、脱敏研究资料；`data/runtime/`、真实数据库、备份、`private/`、敏感商务目录均被 `.gitignore` 排除。
+- 已推内容仅限代码、非敏感文档、脱敏研究资料与**脱敏演示数据**（`data/demo/`，CEO 2026-11-16 批准；0 邮箱/0 手机号/0 绝对路径，全部 LEAD 级）；`data/runtime/`、真实数据库、备份、`private/`、敏感商务目录均被 `.gitignore` 排除。
 - 每次推送后均用 `git ls-remote` 核对远程 SHA 与本地 HEAD 一致。
 
 ---

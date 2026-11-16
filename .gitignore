@@ -108,3 +108,6 @@ run/
 *.pid
 *.port
 .serve/
+
+# --- 脱敏演示数据（CEO 批准入库，说明见 data/demo/README.md）---
+!data/demo/*.db
