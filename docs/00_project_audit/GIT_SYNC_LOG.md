@@ -16,12 +16,13 @@
 | `05_FRONTEND_AND_AGENTS` | `c49121bbc7e0e052dcf77bd0ac35f7c4074eb860` | ✅ 一致 | 18 模块前端工作台、11 Agent 注册表 + 确定性运行器、10 个项目 Skills、研究导入工具脚本、备份/能力口径校正 |
 | `06_FINAL_ACCEPTANCE`（研究） | `260d2a08e38d271d857baa56250c385fc66deab1` | ✅ 一致 | 第一轮真实公开研究（需求 5 / 供给 3 / 匹配 3 / 证据 40 + 4 个 CSV）、文档终校（战略/商务/条款/经营修订） |
 | `06_FINAL_ACCEPTANCE`（验收） | `15f0797ac8b1097c703ff6e5392225176eb3c8f6` | ✅ 一致 | MVP 验收报告、最终交接、CEO 下一步、本同步记录（含 00–05 全部 SHA） |
+| `07_CEO_DECISION_AND_OUTREACH`（2026-11-19 增补） | `1b1ccff4876a8b376f7ac92f3a86165d59728f75` | ✅ 一致 | CEO 批准 A 决策入库（APR-R1-001 / SUP-R1-001）、登甲智能首联材料包 OUT-DJ-001（16 文件）、种子跨天重复建公司缺陷修复 + 3 个回归测试（92 tests）、脱敏演示数据重建（公司 34） |
 
 > 说明：CEO 要求的 7 个阶段均已覆盖；其中 02 与 03 因同一批次交付合并为一次提交推送，已在表中注明。研究阶段按任务书时间线并入 06 收尾。
 
 ## 2. 提交前检查清单（每次）
 
-- [x] `python -m unittest discover -s tests -v` → 89 tests OK（exit 0）
+- [x] `python -m unittest discover -s tests -v` → **92 tests OK（exit 0）**（2026-11-19 复核；早期为 89，新增 3 个种子幂等回归测试）
 - [x] `powershell -ExecutionPolicy Bypass -File scripts/sensitive_scan.ps1` → 高危 0 / 中危 0 / 历史二进制 7 项豁免 / 通过
 - [x] `git status` 无意外文件（数据库/备份/敏感目录均被 `.gitignore` 排除）
 - [x] `git diff --cached --stat` 核对变更范围
@@ -39,6 +40,8 @@
 | 2026-11-16 01:21 | `scripts/run_tests.ps1` 用 `2>&1` 管道触发 NativeCommandError | 改用 `Start-Process` 重定向输出并回读 |
 | 2026-11-16 01:22 | `backup.py` 无 CLI，原文档 `python -m app.backend.backup` 无效 | 文档改为 `backup.create_backup()` + `POST /api/backup[/restore]`，路径统一 `backups\app-*.db` |
 | 2026-11-16 01:24 | 本机无 PowerShell 7（`pwsh` 不在 PATH） | 文档与脚本用法统一改为 `powershell -ExecutionPolicy Bypass -File` |
+| 2026-11-19 13:34 | 启动服务后发现 `companies` 由 34 变 43：`seed.import_demand_side` 用「当天日期」生成需求方公司 ID，每次跨天启动新增 9 个未引用重复公司 | 改为「需求已存在则跳过 + 公司 ID 由需求 ID 派生（`C-DEM-20261102-001`）」；API 删除 9 条脏数据；重启验证 companies 稳定 34；新增 `tests/test_seed_idempotency.py`（3 用例，全量 92 tests OK） |
+| 2026-11-19 13:39 | 演示 Agent 产物混入本机临时库绝对路径（`D:\ChinaCompute\temp\...app.db`） | `build_demo_dataset.py` 增加 JSON 结构级清洗 + 任意盘符路径正则替换 + 清洗后断言；重建后 `data/demo/agent_outputs` 无绝对路径 |
 
 ## 4. 脱敏演示数据同步（CEO 2026-11-16 批准）
 
@@ -48,6 +51,7 @@
 - **扫描策略**：`scripts/sensitive_scan.ps1` 将 `data/demo/*` 列为「已批准脱敏演示数据」单独提示，不计入 FAIL；历史交接二进制仍单列豁免。
 - **提交**：`563b853e473bdb1923450489f8c378fc9806bd5e`（`data(demo): publish sanitized demo database, agent outputs and sha256 manifest (CEO-approved)`）；已推送 `origin/ai-build-20261116`，`git ls-remote` 与本地 HEAD 一致。
 - **可用性验证**：用演示库副本启动服务，`/api/health/db` 返回 18 张业务表，`/api/dashboard` 计数与 MANIFEST 一致（公司 34 / 需求 14 / 供给 21 / 证据 71 / 匹配 6 / 商机 1 / 待审批 9 / 知识 8 / Agent 任务 11）。
+- **2026-11-19 重建**：`scripts/build_demo_dataset.py` 重跑（快照/产物清洗/脱敏校验/MANIFEST 四步），演示库 557,056B、12 文件、公司 34、0 邮箱/0 手机号/0 绝对路径；对应提交 `1b1ccff4…`。
 
 ## 5. 未推送/未提交文件说明
 
@@ -70,7 +74,7 @@ git ls-remote origin
 
 - 远程默认分支 `main`：`d0a9a30d61285471a0cfd0264fdc4b1015256f86`（未改动）。
 - 历史分支 `cursor/handover-20261113-5b36`：`ca825a581135f9fadb3786fd240581be398587cd`（未删除、未合并）。
-- 开发分支 `origin/ai-build-20261116`：含 checkpoint-00 ~ 06 全部提交；每次推送后 `git ls-remote` 核对远程 SHA 与本地 HEAD 一致（无 force push）。
+- 开发分支 `origin/ai-build-20261116`：含 checkpoint-00 ~ 07 全部提交；每次推送后 `git ls-remote` 核对远程 SHA 与本地 HEAD 一致（无 force push）。
 - 本文件最后由「docs 同步提交」更新（SHA 见 `git log -1 --format=%H`）；该提交仅更新本记录，包含最终远程 HEAD。
 - 仓库仍为 **Public**（匿名 `ls-remote` 可访问已验证）；**待 CEO 授权后改为 Private**，未经授权未自行修改。改权限后建议 `git remote set-url` 不变，仅访问控制变化。
 - 敏感数据检查：最近一次 `sensitive_scan.ps1` 覆盖全部受控文件，高危 0 / 未确认中危 0；历史交接二进制 7 项按「不得删除历史文件」要求豁免并列出路径。
