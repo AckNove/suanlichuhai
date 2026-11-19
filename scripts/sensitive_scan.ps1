@@ -33,6 +33,8 @@ $medPatterns = @(
     @{ name = '疑似密码赋值'; regex = '(?i)(password|passwd|pwd|secret|api[_-]?key|access[_-]?key)\s*[:=]\s*["''][^"'']{6,}' }
 )
 $placeholderDomains = @('example.com','example.org','yourcompany','domain.com','placeholder','xxx.com','test.com','sample.com','localhost')
+# 公开企业联系方式：已核实来自企业官网页脚等公开渠道，属可公开披露信息，不算隐私告警
+$publicContactDomains = @('dengjia.ai')
 $binaryExt = @('.db','.sqlite','.sqlite3','.zip','.7z','.rar','.pdf','.xlsx','.xls','.docx','.pptx','.jpg','.jpeg','.png','.pem','.key','.p12','.pfx')
 
 $highHits = @(); $medHits = @(); $binHits = @(); $binLegacy = @(); $binDemo = @()
@@ -60,6 +62,10 @@ foreach ($f in $files) {
                 $matched = $Matches[0]
                 $isPlaceholder = $false
                 foreach ($d in $placeholderDomains) { if ($matched.ToLower().Contains($d)) { $isPlaceholder = $true } }
+                if ($p.name -eq '邮箱地址') {
+                    $domain = ($matched.Split('@')[-1]).ToLower()
+                    if ($publicContactDomains -contains $domain) { $isPlaceholder = $true }
+                }
                 if ($p.name -eq '中国手机号') {
                     if ($line -match '占位|placeholder|示例|XXXX|xxxx|\*\*\*\*') { $isPlaceholder = $true }
                     # 公开文档通用的测试/示例号码，不构成真实联系方式

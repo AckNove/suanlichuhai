@@ -87,7 +87,7 @@
 
 | 验证项 | 命令 | 结果 |
 |---|---|---|
-| 单元/集成测试 | `python -m unittest discover -s tests` | **Ran 89 tests, OK（0 fail/0 error）** |
+| 单元/集成测试 | `python -m unittest discover -s tests` | **Ran 92 tests, OK（0 fail/0 error）**（2026-11-19 增加 3 个种子幂等回归测试） |
 | 后端冒烟（真实 HTTP，13 端点） | `scripts/smoke_test.ps1` | 全 OK；匹配返回 `25.0 / REJECT`（如实反映种子供给 gpu/容量字段空缺） |
 | 集成 API 校验（24 项断言） | 隔离临时库 + 真实 HTTP | **24/24 PASS**（含状态机 409、非法枚举、CSV 导入导出、备份恢复确认、审计、搜索、匹配） |
 | 数据装载 | `python -m app.backend.seed` | 104 行：公司 27 / 供给 18 / 需求 9 / 证据 31 / 匹配 3 / 规格 10 / Agent 任务 11 / 审批 7 / 知识 6 |
@@ -95,7 +95,7 @@
 | Agent 运行器 | `python agents/runner.py validate / run-all` | registry 11、skills 10、0 问题；11/11 任务 DONE，产物 11 个 |
 | 语法检查 | `python -m py_compile`、`node --check` | 后端 9 个 py、前端 10 个 js 全通过 |
 | UTF-8 完整性 | 严格解码扫描 | 全部文本文件合法 UTF-8 |
-| 敏感信息扫描 | `scripts/sensitive_scan.ps1` | 177 文件；高危 0、未确认中危 0；历史二进制 7 个豁免（CEO 要求不得删除） |
+| 敏感信息扫描 | `scripts/sensitive_scan.ps1` | **229 文件**（2026-11-19 复核）；高危 0、未确认中危 0；历史二进制 7 个豁免（CEO 要求不得删除）；脱敏演示数据 1 个 |
 
 ### 2.4 AI Agent 与 Skills 体系
 
@@ -136,6 +136,7 @@
 | checkpoint-04 | `c49121bbc7e0e052dcf77bd0ac35f7c4074eb860` | 前端工作台 + Agent 体系 + Skills + 研究导入工具 |
 | checkpoint-05 | `260d2a08e38d271d857baa56250c385fc66deab1` | 第一轮真实研究 9 份产出 + 文档终校 |
 | checkpoint-06 | 见 `docs/00_project_audit/GIT_SYNC_LOG.md`（验收提交） | 验收报告、交接文档、最终敏感扫描 |
+| checkpoint-07（2026-11-19） | 见 `docs/00_project_audit/GIT_SYNC_LOG.md` | 登甲首联材料包 OUT-DJ-001、CEO A 决策入库、种子幂等缺陷修复 + 3 个回归测试、演示数据重建 |
 
 **分支与安全**
 
@@ -154,11 +155,24 @@
 | 需求方资格核验（0 家） | BLOCKED | 同上；需一手联系人确认预算/决策链 |
 | 公司主体设立、账户、发票、税务、收款 | BLOCKED | CEO 决策（注册地/主体形式）；完成前不具备签约收款能力 |
 | 正式合同与法律意见 | BLOCKED | 需执业律师审核 3 份 term sheet + 跨境/出口管制专项意见 |
-| 对外材料外发 | BLOCKED | 21 份销售材料均为 DRAFT，需 CEO 批准（建议含律师审核） |
+| 对外材料外发 | BLOCKED（部分解除） | 21 份销售材料均为 DRAFT，需 CEO 批准；登甲首联材料包 OUT-DJ-001 已按 CEO 2026-11-19 的「A」授权准备完毕，但**实际发送仍由 CEO 本人执行**（APR-R1-001 仅授权准备材料） |
 | 真实成交/回款（0） | 不存在 | 无核验客户、无签约主体、无收款账户，不得以任何形式表述为业绩 |
 | 浏览器自动化 / LinkedIn 抓取 | PARTIAL | 本机 Chrome + CDP 仅可本地自测/截图；无付费数据源，不做 LinkedIn 登录抓取，不安装插件 |
 | 邮件/私信/电话外呼 | 禁止 | 系统与 Agent 均无此能力，CEO 保留联系权 |
 | 真实报价 | 禁止 | 系统只做成本结构与费率测算（example_only），不生成报价单 |
+
+---
+
+### 5.1 2026-11-19 增量记录（CEO 批准 A 之后）
+
+| 事项 | 状态 | 证据 |
+|---|---|---|
+| CEO 批准登甲智能为第一验供应商（A） | DONE（决策已入系统） | `APR-R1-001` = APPROVED（CEO Arthur，2026-11-19T13:32:24+08:00）；`SUP-R1-001` notes 已记录；状态仍为 LEAD（发送后才升 NEEDS_VERIFICATION） |
+| 登甲首联材料包 OUT-DJ-001 v0.1 | DONE（待 CEO 签发） | `docs/09_outreach/` 共 16 文件，双语，全部标「草案不得外发」；发送由 CEO 本人执行 |
+| 公开渠道复核 | DONE | 官网 https://dengjia-ai.com HTTP 200；公开商务邮箱 business@dengjia.ai；2026-11-16 与中国电信签约「万卡国产算力」产业战略合作（新增公开信息，证据 EV-R1-041 待补录） |
+| 发现并修复种子幂等缺陷 | DONE | 旧 `seed.import_demand_side` 用当天日期生成需求方公司 ID，跨天启动会新增 9 个重复公司；改为「需求已存在则跳过 + 公司 ID 由需求 ID 派生」；清理 9 条脏数据；重启验证 companies 稳定为 34 |
+| 回归测试 | DONE | `tests/test_seed_idempotency.py` 3 用例；全量 **92 tests OK** |
+| 脱敏演示数据重建 | DONE | `scripts/build_demo_dataset.py` 重跑：12 文件、557,056B、companies=34；0 邮箱/0 手机号/0 绝对路径 |
 
 ---
 
@@ -168,7 +182,7 @@
 cd D:\ChinaCompute\suanlichuhai
 . .\scripts\setup_dev_env.ps1            # 仅进程级：TEMP/PIP_CACHE 指向 D 盘
 python -m app.backend.seed               # 建库 + 装载历史种子（幂等）
-python -m unittest discover -s tests     # 89 tests OK
+python -m unittest discover -s tests     # 92 tests OK
 powershell -File scripts\smoke_test.ps1  # 13 端点冒烟
 python -m app.backend.server             # http://127.0.0.1:8770
 python agents\runner.py validate         # 11 Agent / 10 Skill 校验

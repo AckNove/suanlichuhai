@@ -241,12 +241,16 @@ def import_demand_side(conn) -> dict:
                 "demands": {"inserted": 0, "skipped": 0}}
     source_rel = db.rel_to_root(DEMAND_REGISTRY)
     now = _now()
+    # 幂等：历史需求线索已导入过就不再重复建公司（修复旧实现的缺陷：
+    # 旧版公司 ID 用当天日期生成，导致每次跨天启动都会新增 9 个重复 DEMANDER 公司）
+    existing_demands = {row[0] for row in conn.execute("SELECT id FROM demand_opportunities")}
     companies, demands = [], []
     for index, row in enumerate(rows, start=1):
         did = _clean(row.get("id"))
-        if not did:
+        if not did or did in existing_demands:
             continue
-        cid = "C-%s-%03d" % (db.today_stamp(), index)
+        # 公司 ID 由需求线索 ID 派生（如 DEM-20261102-001 -> C-DEM-20261102-001），跨次运行稳定
+        cid = "C-%s" % did
         name = _clean(row.get("name")) or ("待确认需求方（%s）" % did)
         country = _clean(row.get("country"))
         use_case = _clean(row.get("use_case"))

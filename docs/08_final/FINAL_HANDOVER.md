@@ -1,7 +1,7 @@
 # 项目交接总览（Final Handover）
 
 - 项目：中国算力国际化项目（China Compute Globalization Services，CCGS）
-- 交接日期：2026-11-16（Asia/Shanghai）
+- 交接日期：2026-11-16（Asia/Shanghai）；**2026-11-19 增补：登甲智能首联材料包 OUT-DJ-001（CEO 已批准 A）**
 - 交接对象：CEO Arthur
 - 仓库：https://github.com/AckNove/suanlichuhai
 - 开发分支：`ai-build-20261116`（远程同名分支）
@@ -12,7 +12,7 @@
 
 ## 1. 这个项目现在是什么
 
-一句话：**一套「中国算力出海」的 AI 原生经营底座**——60 份文档（战略 6、商务 5、双语销售 21、合同条款 3、研究 5、经营 6、系统 7、审计 4、验收 3）+ 一个本地可运行的 18 模块经营工作台 + 11 个 Agent/10 个 Skills + 第一轮 9 个真实公开信息研究产出。
+一句话：**一套「中国算力出海」的 AI 原生经营底座**——76 份文档（战略 6、商务 5、双语销售 21、合同条款 3、研究 5、经营 6、系统 7、审计 4、验收 3、首联材料包 16）+ 一个本地可运行的 18 模块经营工作台 + 11 个 Agent/10 个 Skills + 第一轮 9 个真实公开信息研究产出。
 
 它的定位是「服务商」：连接中国可商业化智算与全球 AI 算力需求，收服务费，**不自营机房、不囤卡、不托管客户资金、不做未授权交易**（详见 `docs/01_strategy/COMPANY_POSITIONING.md`）。
 
@@ -34,7 +34,7 @@ python -m app.backend.server           # 启动工作台：http://127.0.0.1:8770
 验证环境与质量：
 
 ```powershell
-python -m unittest discover -s tests     # 期望：Ran 89 tests, OK
+python -m unittest discover -s tests     # 期望：Ran 92 tests, OK
 powershell -File scripts\smoke_test.ps1  # 期望：13 个端点 + 匹配引擎全 OK
 python agents\runner.py validate         # 期望：11 agents / 10 skills / 0 problems
 ```
@@ -58,6 +58,7 @@ python agents\runner.py validate         # 期望：11 agents / 10 skills / 0 pr
 | `06_operations/` | 经营手册、交易管道、CEO 审批矩阵、风险登记、公司设立清单、跨境风险流程 | 6 |
 | `07_ai_system/` | 数据库契约、API 契约、系统架构、工具清单、运行手册、备份恢复、Agent/Skills 规格 | 7 |
 | `08_final/` | 本交接文档、验收报告、CEO 下一步行动 | 3 |
+| `09_outreach/` | 登甲智能首联材料包 OUT-DJ-001：双语首联邮件/短消息、9 问核验表、商机保护一页纸、30 分钟通话议程、跟进模板、合规口径、CEO 签发清单、公开信息卡、Lintasarta 需求假设（内部） | 16 |
 
 ### 3.2 软件（`app/`、`agents/`、`.dsh/`）
 
@@ -66,7 +67,7 @@ python agents\runner.py validate         # 期望：11 agents / 10 skills / 0 pr
 - `app/data/`：`schema.sql`（18 表 7 索引）+ 4 份种子 CSV
 - `agents/`：`registry.json`（11 Agent）、`runner.py`（6 类确定性任务）、README
 - `.dsh/skills/`：10 个项目 Skill（各含输入/步骤/工具/输出/质量标准/权限边界）
-- `tests/`：89 个测试（后端 66 + Agent 23）
+- `tests/`：92 个测试（后端 66 + Agent 23 + 种子幂等 3）
 - `scripts/`：环境、初始化、启动、测试、冒烟、敏感扫描
 
 ### 3.3 数据
@@ -144,4 +145,4 @@ python agents\runner.py validate         # 期望：11 agents / 10 skills / 0 pr
 
 - 代码与文档：已提交并推送到 `origin/ai-build-20261116`，远程 SHA 与本地一致。
 - 数据：真实业务数据为空（0 核验/0 协议/0 成交）；演示种子可重建。
-- 待 CEO 动作：见 `docs/08_final/CEO_NEXT_ACTIONS.md`（只列一个需要今天回答的问题）。
+- 待 CEO 动作：见 `docs/08_final/CEO_NEXT_ACTIONS.md`。**2026-11-19 更新**：CEO 已批准 A（登甲智能为首验供应商），决定已写入 `APR-R1-001`（APPROVED）与 `SUP-R1-001` notes；首联材料包 `OUT-DJ-001` v0.1 已就绪（`docs/09_outreach/`），等 CEO 本人签发并发送。真实外部接触仍为 0 次。

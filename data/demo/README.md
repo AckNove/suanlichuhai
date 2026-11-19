@@ -44,7 +44,10 @@ python -m app.backend.db          # 建 18 张表
 python -m app.backend.seed        # 历史交接种子（全部 LEAD）
 python scripts\import_research.py # 第一轮研究导入（幂等）
 python agents\runner.py run-all   # 复跑 11 个 Agent 任务，产物落 data/runtime/agent_outputs/
+python scripts\build_demo_dataset.py  # 一次性重建 data/demo/（快照 + 产物 + 脱敏校验 + MANIFEST）
 ```
+
+`build_demo_dataset.py` 会做四件事：sqlite3 backup 一致性快照 → 复制 Agent 产物并把本机绝对路径替换为相对路径 → 扫描演示库（邮箱/手机号/绝对路径必须为 0）→ 重写 `MANIFEST.json`（sha256 + 计数）。
 
 ## 5. 校验
 

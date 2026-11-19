@@ -144,9 +144,10 @@ python -m unittest discover -s tests -v
 | CEO 审批 | [CEO_APPROVAL_MATRIX.md](docs/06_operations/CEO_APPROVAL_MATRIX.md) |
 | 风险登记 | [COMMERCIAL_RISK_REGISTER.md](docs/06_operations/COMMERCIAL_RISK_REGISTER.md) |
 | AI 系统 | [SYSTEM_ARCHITECTURE.md](docs/07_ai_system/SYSTEM_ARCHITECTURE.md) |
-| 验收报告 | [MVP_ACCEPTANCE_REPORT.md](docs/08_acceptance/MVP_ACCEPTANCE_REPORT.md) |
-| 交接总览 | [FINAL_HANDOVER.md](FINAL_HANDOVER.md) |
-| CEO 下一步 | [CEO_NEXT_ACTIONS.md](CEO_NEXT_ACTIONS.md) |
+| 登甲首联材料包 | [docs/09_outreach/](docs/09_outreach/README.md)（OUT-DJ-001，草案待 CEO 签发） |
+| 验收报告 | [MVP_ACCEPTANCE_REPORT.md](docs/08_final/MVP_ACCEPTANCE_REPORT.md) |
+| 交接总览 | [FINAL_HANDOVER.md](docs/08_final/FINAL_HANDOVER.md) |
+| CEO 下一步 | [CEO_NEXT_ACTIONS.md](docs/08_final/CEO_NEXT_ACTIONS.md) |
 
 ---
 

@@ -1,4 +1,4 @@
-# Run the CCGS unittest suite (see docs/07_ai_system/RUNBOOK.md).
+﻿# Run the CCGS unittest suite (see docs/07_ai_system/RUNBOOK.md).
 # unittest writes progress to stderr; Start-Process + redirect avoids Windows
 # PowerShell 5.1 treating that stderr as a terminating native-command error.
 # Keep this file ASCII-only so Windows PowerShell 5.1 parses it without a BOM.
